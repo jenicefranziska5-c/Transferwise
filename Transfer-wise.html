@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TRANSFERWISE Mobile Banking</title>
+<style>
+:root {
+  --bg:#0b1020; --card:#141a32; --muted:#7e89a6; --text:#eef3ff;
+  --accent:#4da3ff; --ok:#23c483; --btn:#213058;
+  --radius:14px;
+}
+*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+body{margin:0;background:linear-gradient(160deg,#0b1020,#111835 60%);color:var(--text)}
+header{padding:18px 16px 10px;border-bottom:1px solid #212a4a;position:sticky;top:0;background:#0e152e;z-index:5}
+header h1{margin:0;font-size:18px}
+header .sub{font-size:12px;color:var(--muted)}
+main{padding:16px;max-width:800px;margin:auto}
+.card{background:var(--card);border:1px solid #1e2747;border-radius:var(--radius);padding:16px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.stack{display:grid;gap:14px}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.grow{flex:1}
+input{background:#0f1734;border:1px solid #253059;color:var(--text);border-radius:12px;padding:12px 14px;width:100%;outline:none}
+button{border:0;background:var(--btn);color:var(--text);padding:12px 14px;border-radius:12px;font-weight:600;cursor:pointer}
+button.primary{background:var(--accent);color:#041427}
+.balance{font-size:28px;font-weight:800;letter-spacing:.3px}
+.chip{padding:6px 10px;border-radius:999px;background:#0e1a3a;border:1px solid #26325a;font-size:12px;color:var(--muted)}
+.list{display:grid;gap:10px}
+.tx{display:flex;justify-content:space-between;align-items:center;background:#10193a;border:1px solid #233060;padding:12px;border-radius:12px}
+.status{font-size:12px;padding:4px 8px;border-radius:999px;background:#1b3a2b;color:#9ff0c6;border:1px solid #296549}
+.hidden{display:none}
+.hint{font-size:12px;color:var(--muted)}
+.greet{font-size:16px;color:#cfe5ff}
+.brand{font-weight:800;letter-spacing:.4px}
+.center{text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <h1 class="brand">TRANSFERWISE</h1>
+  <div class="sub" id="today"></div>
+</header>
+
+<main>
+  <!-- LOGIN VIEW -->
+  <section id="view-login" class="card stack">
+    <div class="greet">Welcome to TRANSFERWISE 👋</div>
+    <div class="stack">
+      <label class="stack">
+        <span class="hint">Username (use: wise)</span>
+        <input id="username" placeholder="wise" autocomplete="off">
+      </label>
+      <label class="stack">
+        <span class="hint">Password (any)</span>
+        <input id="password" type="password" placeholder="Enter password" autocomplete="off">
+      </label>
+      <button class="primary" id="btn-login">Sign in</button>
+    </div>
+  </section>
+
+  <!-- DASHBOARD VIEW -->
+  <section id="view-dash" class="hidden stack">
+    <div class="card stack">
+      <div class="row">
+        <div class="grow">
+          <div class="greet" id="welcome">Welcome</div>
+          <div class="hint">Available balance</div>
+          <div class="balance" id="balance">$55,000.00</div>
+        </div>
+        <div class="chip" id="userChip">User: —</div>
+      </div>
+      <div class="row">
+        <input id="withdraw-recipient" placeholder="Recipient for withdrawal">
+        <button class="primary grow" id="go-withdraw">$1,000 Withdraw</button>
+      </div>
+      <div class="row">
+        <input id="transfer-recipient" placeholder="Recipient for transfer">
+        <input id="transfer-amount" type="number" placeholder="Amount (USD)">
+        <button class="primary" id="go-transfer">Transfer</button>
+      </div>
+    </div>
+
+    <div class="card stack">
+      <strong>Recent activity</strong>
+      <div id="tx-list" class="list"></div>
+    </div>
+  </section>
+
+  <!-- METHOD VIEW -->
+  <section id="view-method" class="hidden card stack">
+    <div class="row"><button id="back-dash">← Back</button><div class="grow"></div></div>
+    <h3 id="method-title" style="margin:0">Choose payout method</h3>
+    <div class="stack">
+      <button class="primary" id="method-paypal">PayPal</button>
+      <button class="primary" id="method-revolut">Revolut</button>
+    </div>
+  </section>
+
+  <!-- CONFIRMATION VIEW -->
+  <section id="view-confirm" class="hidden card stack center">
+    <h2 id="confirm-msg"></h2>
+    <div id="confirm-time" class="hint"></div>
+    <button class="primary" id="return-home">Return Home</button>
+  </section>
+</main>
+
+<script>
+const loginView = document.getElementById('view-login');
+const dashView = document.getElementById('view-dash');
+const methodView = document.getElementById('view-method');
+const confirmView = document.getElementById('view-confirm');
+
+const btnLogin = document.getElementById('btn-login');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const balanceEl = document.getElementById('balance');
+const welcome = document.getElementById('welcome');
+const userChip = document.getElementById('userChip');
+const txList = document.getElementById('tx-list');
+
+const goWithdraw = document.getElementById('go-withdraw');
+const goTransfer = document.getElementById('go-transfer');
+const withdrawRecipient = document.getElementById('withdraw-recipient');
+const transferRecipient = document.getElementById('transfer-recipient');
+const transferAmount = document.getElementById('transfer-amount');
+
+const methodTitle = document.getElementById('method-title');
+const backDash = document.getElementById('back-dash');
+const methodPaypal = document.getElementById('method-paypal');
+const methodRevolut = document.getElementById('method-revolut');
+
+const confirmMsg = document.getElementById('confirm-msg');
+const confirmTime = document.getElementById('confirm-time');
+const returnHome = document.getElementById('return-home');
+
+let balance = 55000;
+let currentAction = '';
+let currentAmount = 0;
+let currentRecipient = '';
+
+document.getElementById('today').textContent = new Date().toLocaleString();
+
+function updateBalance() {
+  balanceEl.textContent = `$${balance.toLocaleString()}.00`;
+}
+
+function addTx(desc, amt) {
+  const tx = document.createElement('div');
+  tx.className = 'tx';
+  tx.innerHTML = `<div>${desc}</div><div class="status">Completed</div>`;
+  txList.prepend(tx);
+}
+
+btnLogin.onclick = () => {
+  if (username.value.trim().toLowerCase() === 'wise') {
+    loginView.classList.add('hidden');
+    dashView.classList.remove('hidden');
+    welcome.textContent = `Welcome, ${username.value.trim()}`;
+    userChip.textContent = `User: ${username.value.trim()}`;
+  }
+};
+
+goWithdraw.onclick = () => {
+  if (balance >= 1000 && withdrawRecipient.value.trim()) {
+    currentAction = 'Withdrawal';
+    currentAmount = 1000;
+    currentRecipient = withdrawRecipient.value.trim();
+    showMethod(`Withdraw $1,000 to ${currentRecipient}`);
+  }
+};
+
+goTransfer.onclick = () => {
+  const amt = parseInt(transferAmount.value) || 0;
+  if (amt > 0 && amt <= balance && transferRecipient.value.trim()) {
+    currentAction = 'Transfer';
+    currentAmount = amt;
+    currentRecipient = transferRecipient.value.trim();
+    showMethod(`Transfer $${amt} to ${currentRecipient}`);
+  }
+};
+
+function showMethod(title) {
+  dashView.classList.add('hidden');
+  methodView.classList.remove('hidden');
+  methodTitle.textContent = title;
+}
+
+backDash.onclick = () => {
+  methodView.classList.add('hidden');
+  dashView.classList.remove('hidden');
+};
+
+methodPaypal.onclick = () => processTransaction('PayPal');
+methodRevolut.onclick = () => processTransaction('Revolut');
+
+function processTransaction(method) {
+  balance -= currentAmount;
+  updateBalance();
+  addTx(`${currentAction} to ${currentRecipient} via ${method} - $${currentAmount}`, currentAmount);
+  methodView.classList.add('hidden');
+  confirmView.classList.remove('hidden');
+  confirmMsg.textContent = `${currentAction} Completed via ${method}`;
+  confirmTime.textContent = `On ${new Date().toLocaleString()}`;
+}
+
+returnHome.onclick = () => {
+  confirmView.classList.add('hidden');
+  dashView.classList.remove('hidden');
+};
+
+updateBalance();
+</script>
+</body>
+</html>
