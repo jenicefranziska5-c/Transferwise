@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Celebrity Fan Dashboard — Template</title>
+<style>
+  :root{
+    --bg: #ffffff;
+    --card: #fafafa;
+    --muted: #5a6470;
+    --text: #111827;
+    --accent: #0b61ff;
+    --glass: rgba(2,6,23,0.04);
+    --radius: 12px;
+    --shadow: 0 8px 24px rgba(16,24,40,0.06);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* Layout */
+  header{
+    display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid #e9eef6;
+    background: #fff;position:sticky;top:0;z-index:50;
+  }
+  .brand{display:flex;gap:14px;align-items:center}
+  .logo{
+    width:56px;height:56px;border-radius:10px;background:#f3f6ff;display:flex;align-items:center;justify-content:center;
+    color:var(--accent);font-weight:800;font-size:18px;
+  }
+  nav a{color:var(--muted);text-decoration:none;margin-left:14px;font-weight:700;font-size:14px}
+
+  .wrap{max-width:1140px;margin:28px auto;padding:0 20px}
+
+  .grid{
+    display:grid;
+    grid-template-columns: 1fr 360px;
+    gap:20px;
+    align-items:start;
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:18px;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(2,6,23,0.03);
+  }
+
+  /* Hero */
+  .hero{display:flex;gap:18px;align-items:center}
+  .portrait{
+    width:160px;height:160px;border-radius:12px;overflow:hidden;background:#eee;flex-shrink:0;
+    border:1px solid rgba(2,6,23,0.03);
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+  .hero h1{margin:0;font-size:22px}
+  .lead{color:var(--muted);margin-top:6px}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .pill{background:#f3f5f8;padding:8px 10px;border-radius:999px;font-weight:700;color:var(--muted);font-size:13px}
+
+  /* Tour & Shop */
+  h2{margin:0 0 10px 0;font-size:18px}
+  .tour-list,.shop-list{display:flex;flex-direction:column;gap:10px}
+  .tour-item,.product{
+    display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:10px;background:#fff;border:1px solid rgba(2,6,23,0.03)
+  }
+  .product .meta{display:flex;flex-direction:column;gap:4px}
+  .muted{color:var(--muted);font-size:13px}
+
+  /* Buttons */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:800;
+  }
+  .btn-primary{background:var(--accent);color:white}
+  .btn-ghost{background:transparent;border:1px solid #d5dbe6;color:var(--muted);padding:9px 12px}
+  .btn-small{padding:6px 10px;font-weight:700;border-radius:8px}
+
+  /* Membership form */
+  form .field{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+  input[type="text"],input[type="email"]{
+    padding:10px;border-radius:8px;border:1px solid #dbe6f4;background:white;color:var(--text)
+  }
+
+  /* Modal (checkout) */
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;z-index:100;
+  }
+  .modal{
+    width:min(520px,calc(100% - 36px));
+    background:white;border-radius:12px;padding:18px;border:1px solid rgba(2,6,23,0.06);box-shadow:0 24px 60px rgba(2,6,23,0.25);
+  }
+  pre.wallet{
+    user-select:all;background:#f3f6ff;border-radius:8px;padding:12px;border:1px solid rgba(2,6,23,0.04);font-size:14px;margin:12px 0;
+    overflow-x:auto;
+  }
+
+  footer{text-align:center;padding:22px 0;color:var(--muted);font-size:13px;margin-top:18px}
+
+  /* Responsive */
+  @media (max-width:980px){
+    .grid{grid-template-columns:1fr}
+    .portrait{width:140px;height:140px}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">CF</div>
+      <div style="line-height:1">
+        <div style="font-weight:800">Celebrity Fan Dashboard</div>
+        <div style="font-size:12px;color:var(--muted)">Template — replace placeholders with authorized content</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#tour">Tour</a>
+      <a href="#shop">Shop</a>
+    </nav>
+  </header>
+
+  <main class="wrap" id="home">
+    <section class="card hero" aria-labelledby="welcome-title">
+      <div class="portrait" aria-hidden="false">
+        <!-- Replace portrait.jpg with your authorized image file -->
+        <img src="portrait.jpg" alt="Authorized portrait">
+      </div>
+
+      <div style="flex:1">
+        <h1 id="welcome-title">Welcome — Celebrity Fan Dashboard</h1>
+        <p class="lead">Comedian • Europe Tour • Fan hub</p>
+
+        <div class="pills" aria-hidden="false">
+          <div class="pill">Age: <span id="age">—</span></div>
+          <div class="pill">Sign: Virgo</div>
+          <div class="pill">Role: Comedian</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid" style="margin-top:20px">
+      <!-- Main column -->
+      <div>
+        <section id="tour" class="card" aria-labelledby="tour-title">
+          <h2 id="tour-title">Upcoming Europe Tour</h2>
+          <div class="tour-list">
+            <div class="tour-item"><div>Amsterdam — AFAS Live</div><div class="muted">Oct 09, 2025</div></div>
+            <div class="tour-item"><div>Berlin — Tempodrom</div><div class="muted">Oct 15, 2025</div></div>
+            <div class="tour-item"><div>London — O2 Shepherd's Bush</div><div class="muted">Oct 22, 2025</div></div>
+          </div>
+        </section>
+
+        <section id="shop" class="card" aria-labelledby="shop-title" style="margin-top:18px">
+          <h2 id="shop-title">Pre-sale — Polo Shirts</h2>
+          <p class="muted">Limited-run polos. Press <strong>Get Now</strong> to open secure copy-only checkout.</p>
+
+          <div class="shop-list" style="margin-top:12px">
+            <div class="product">
+              <div class="meta">
+                <div style="font-weight:800">Official Polo — Black</div>
+                <div class="muted">Sizes: S • M • L • XL</div>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center">
+                <button class="btn btn-primary btn-small" data-item="Official Polo — Black" data-price="100" onclick="openCheckout(this)">
+                  Get Now • $100 <span style="margin-left:8px;font-size:11px;color:var(--muted)">©️ 2025</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <div class="meta">
+                <div style="font-weight:800">Official Polo — White</div>
+                <div class="muted">Sizes: S • M • L • XL</div>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center">
+                <button class="btn btn-primary btn-small" data-item="Official Polo — White" data-price="120" onclick="openCheckout(this)">
+                  Get Now • $120 <span style="margin-left:8px;font-size:11px;color:var(--muted)">©️ 2025</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <div class="meta">
+                <div style="font-weight:800">Limited Edition Polo — Red</div>
+                <div class="muted">Signed edition</div>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center">
+                <button class="btn btn-primary btn-small" data-item="Limited Edition Polo — Red" data-price="150" onclick="openCheckout(this)">
+                  Get Now • $150 <span style="margin-left:8px;font-size:11px;color:var(--muted)">©️ 2025</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top:18px">
+          <h2>Member Signup</h2>
+          <p class="muted">Register as a member to be eligible for the welcome credit (verification required).</p>
+          <form id="signup" onsubmit="event.preventDefault(); alert('Signup submitted — integrate backend to process');" style="margin-top:12px">
+            <div class="field">
+              <label class="muted">Full name</label>
+              <input type="text" required placeholder="Your full name">
+            </div>
+            <div class="field">
+              <label class="muted">Email</label>
+              <input type="email" required placeholder="you@example.com">
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;margin-top:8px">
+              <button class="btn btn-primary" type="submit">Register — $300 <span style="margin-left:8px;font-size:11px;color:var(--muted)">©️ 2025</span></button>
+              <button class="btn btn-ghost" type="button" onclick="alert('Quick gift clicked — integrate server flow')">Quick gift $500 <span style="margin-left:8px;font-size:11px;color:var(--muted)">©️ 2025</span></button>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <!-- Sidebar -->
+      <aside>
+        <section class="card">
+          <h2>Latest Update</h2>
+          <p id="updatedAt" class="muted">—</p>
+        </section>
+
+        <section class="card" style="margin-top:18px">
+          <h2>Deposit Wallet</h2>
+          <p class="muted">Copy-only address shown here for demonstration. Replace with an authorized address in production.</p>
+          <pre id="demoWallet" class="wallet">your-bitcoin-wallet-address-here</pre>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-primary btn-small" onclick="copyText('#demoWallet')">Copy address <span style="margin-left:8px;font-size:11px;color:var(--muted)">©️ 2025</span></button>
+            <button class="btn btn-ghost btn-small" onclick="alert('Show QR — implement server-side/graphic if needed')">Show QR <span style="margin-left:8px;font-size:11px;color:var(--muted)">©️ 2025</span></button>
+          </div>
+          <p id="copiedNotice" style="color:green;font-size:13px;margin-top:8px;display:none">Copied ✓</p>
+        </section>
+      </aside>
+    </div>
+
+    <footer>©️ 2025 — Celebrity Dashboard Template</footer>
+  </main>
+
+  <!-- Modal -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">Checkout — <span id="modalItem">Item</span></h3>
+      <p class="muted">Amount: <strong id="modalPrice">$0</strong> — Payment option shown below (copy-only).</p>
+
+      <label class="muted" for="modalWallet">Send BTC to:</label>
+      <pre id="modalWallet" class="wallet">your-bitcoin-wallet-address-here</pre>
+
+      <div style="display:flex;gap:8px;margin-top:12px;align-items:center">
+        <button class="btn btn-primary" onclick="copyText('#modalWallet')">Copy address <span style="margin-left:8px;font-size:11px;color:var(--muted)">©️ 2025</span></button>
+        <button class="btn btn-ghost" onclick="closeModal()">Close</button>
+      </div>
+
+      <p style="margin-top:12px;color:var(--muted);font-size:13px">After you send payment, implement a server-side verification step to confirm receipt and fulfill the order.</p>
+    </div>
+  </div>
+
+<script>
+  // Config (placeholder values). Replace with authorized values ONLY when legal.
+  const PLACEHOLDER_WALLET = "your-bitcoin-wallet-address-here";
+  document.getElementById('demoWallet').innerText = PLACEHOLDER_WALLET;
+  document.getElementById('modalWallet').innerText = PLACEHOLDER_WALLET;
+
+  // update time
+  function updateTime(){
+    const now = new Date();
+    const iso = now.toLocaleString();
+    document.getElementById('updatedAt').innerText = iso;
+  }
+  updateTime();
+  setInterval(updateTime, 60_000);
+
+  // age calculation example (editable)
+  (function(){
+    const y=1995,m=9,d=10;
+    function calcAge(y,m,d){
+      const dob=new Date(y,m-1,d);
+      const now=new Date();
+      let age=now.getFullYear()-dob.getFullYear();
+      const mm = now.getMonth()-dob.getMonth();
+      if(mm<0 || (mm===0 && now.getDate()<dob.getDate())) age--;
+      return age;
+    }
+    document.getElementById('age').innerText = calcAge(y,m,d) + ' years';
+  })();
+
+  // Modal logic
+  const backdrop = document.getElementById('modalBackdrop');
+  function openCheckout(buttonEl){
+    const item = buttonEl.dataset.item || 'Item';
+    const price = buttonEl.dataset.price || '0';
+    document.getElementById('modalItem').innerText = item;
+    document.getElementById('modalPrice').innerText = `$${price}`;
+    // modal wallet already set to placeholder; if you have an authorized wallet, set it here
+    backdrop.style.display = 'flex';
+    backdrop.setAttribute('aria-hidden','false');
+    // focus management
+    backdrop.querySelector('.btn-primary').focus();
+  }
+  function closeModal(){
+    backdrop.style.display = 'none';
+    backdrop.setAttribute('aria-hidden','true');
+  }
+  // close on backdrop click or ESC
+  backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) closeModal(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+
+  // Copy helper with fallback & UI feedback
+  async function copyText(selectorOrElement){
+    let el;
+    if (typeof selectorOrElement === 'string') el = document.querySelector(selectorOrElement);
+    else el = selectorOrElement;
+    if(!el) return;
+    const text = el.innerText || el.value || '';
+    try{
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        await navigator.clipboard.writeText(text);
+      } else {
+        // fallback: create temporary textarea
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta);
+        ta.select(); ta.setSelectionRange(0, 999999);
+        document.execCommand('copy');
+        ta.remove();
+      }
+      // visual feedback
+      const notice = document.getElementById('copiedNotice');
+      if(notice){ notice.style.display='block'; setTimeout(()=> notice.style.display='none',2000); }
+    }catch(err){
+      alert('Copy failed — please copy manually: ' + text);
+    }
+  }
+</script>
+</body>
+</html>
