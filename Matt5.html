@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matthew Rife Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #f9f9f9;
+      border-bottom: 2px solid #ddd;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    header p {
+      margin: 5px 0 0;
+      font-size: 1rem;
+      color: #555;
+    }
+    .hero {
+      text-align: center;
+      padding: 30px;
+    }
+    .hero img {
+      width: 280px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .hero h2 {
+      margin-top: 15px;
+      font-size: 1.8rem;
+    }
+    .pill {
+      display: inline-block;
+      background: #eee;
+      border-radius: 20px;
+      padding: 5px 12px;
+      margin: 5px;
+      font-size: 0.9rem;
+    }
+    .section {
+      padding: 30px;
+      border-top: 1px solid #ddd;
+      text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #0056b3;
+    }
+    .wallet-box {
+      margin-top: 15px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      display: inline-block;
+      font-family: monospace;
+      background: #f8f8f8;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f9f9f9;
+      border-top: 2px solid #ddd;
+      font-size: 0.9rem;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome Fans 🎤</h1>
+    <p id="live-time">Loading time...</p>
+  </header>
+
+  <div class="hero">
+    <!-- Replace 'matt-rife.jpg' with your cropped image -->
+    <img src="matt-rife.jpg" alt="Matthew Rife Portrait">
+    <h2>Matthew Rife</h2>
+    <div>
+      <span class="pill">Age: 29</span>
+      <span class="pill">Sign: Virgo</span>
+      <span class="pill">Comedian</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Presale Polo Shirts</h2>
+    <p>Exclusive signed polos available now — $100</p>
+    <a href="#wallet" class="btn">Get Now</a>
+    <p style="margin-top:10px;color:#777;">©️ 2025</p>
+  </div>
+
+  <div id="wallet" class="section">
+    <h2>Payment</h2>
+    <p>Copy the Bitcoin wallet address below:</p>
+    <div class="wallet-box" id="walletText">bc1qk20x24mgx0n65wmclq92n0ka09zk8rcvuqhkap</div>
+    <br>
+    <button class="btn" onclick="copyWallet()">Copy Wallet Address</button>
+    <p style="margin-top:10px;color:#777;">©️ 2025</p>
+  </div>
+
+  <div class="section">
+    <h2>Disclaimer</h2>
+    <p>Registered members receive a welcome gift of $500 🎁</p>
+    <p style="margin-top:10px;color:#777;">©️ 2025</p>
+  </div>
+
+  <footer>
+    <p>All Rights Reserved ©️ 2025</p>
+  </footer>
+
+  <script>
+    // Live updating time
+    function updateTime() {
+      const now = new Date();
+      document.getElementById("live-time").textContent =
+        "Current Time: " + now.toLocaleString();
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // Copy wallet function
+    function copyWallet() {
+      const walletText = document.getElementById("walletText").innerText;
+      navigator.clipboard.writeText(walletText).then(() => {
+        alert("Wallet address copied!");
+      });
+    }
+  </script>
+</body>
+</html>
