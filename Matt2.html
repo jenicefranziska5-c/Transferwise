@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Matthew Rife — Fan Dashboard</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#1a1a1a;
+      --muted:#555;
+      --accent:#0077ff;
+      font-family:Inter,system-ui,Roboto,Arial
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text)}
+    header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #ddd;background:#fff;position:sticky;top:0;z-index:10}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:52px;height:52px;border-radius:10px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--accent)}
+    nav a{color:var(--muted);text-decoration:none;margin-left:12px;font-weight:700}
+    .container{max-width:1100px;margin:26px auto;padding:16px}
+    .card{background:#fafafa;padding:16px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #eee}
+    .hero{display:flex;gap:14px;align-items:center}
+    .img{width:150px;height:150px;border-radius:12px;background:#eee;display:flex;align-items:center;justify-content:center;color:#888;font-size:14px}
+    h1{margin:0;font-size:26px}
+    .lead{color:var(--muted);margin-top:6px}
+    .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .pill{background:#f0f0f0;padding:8px 10px;border-radius:999px;font-weight:700;color:var(--muted);font-size:13px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;font-weight:800;border:0;cursor:pointer}
+    .btn-pay{background:var(--accent);color:#fff}
+    .btn-ghost{background:transparent;border:1px solid #ccc;color:var(--muted);padding:9px 12px}
+    input,textarea,select{background:#fff;border:1px solid #ccc;padding:10px;border-radius:8px;color:inherit}
+    footer{margin-top:18px;padding:18px;text-align:center;color:var(--muted);font-size:13px}
+    .grid-2{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+    .tour-list{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+    .tour-item{display:flex;justify-content:space-between;border-radius:8px;padding:10px;background:#f5f5f5}
+    .shop-list{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+    .product{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;background:#f5f5f5}
+    .copyright-note{font-size:11px;color:var(--muted);margin-left:8px}
+    @media (max-width:980px){.grid-2{grid-template-columns:1fr}.hero{flex-direction:column;align-items:flex-start}.img{width:100%;height:140px}}
+    .notice{background:#fdf5d6;padding:10px;border-left:3px solid #ffe066;border-radius:6px;color:#6b5d00;margin-bottom:12px}
+    .copy-row{display:flex;gap:8px;align-items:center}
+    .copied{font-size:12px;color:green;margin-left:8px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo" id="logoText">MR</div>
+      <div>
+        <div id="siteTitle" style="font-weight:900">Matthew Rife — Fan Dashboard</div>
+        <div style="font-size:12px;color:var(--muted)" id="siteSub">Official Team Dashboard</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#info">Info</a>
+      <a href="#members">Members</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- HOME -->
+    <section id="home" class="card">
+      <div class="hero">
+        <div class="img">Photo</div>
+        <div style="flex:1">
+          <h1>Welcome, fans of Matthew Rife! 😉</h1>
+          <p class="lead">Comedian • Live update time • Europe tour info</p>
+
+          <div class="meta">
+            <div class="pill" id="updatedAt">Updated: —</div>
+            <div class="pill">Role: Comedian</div>
+            <div class="pill" id="agePill">Age: —</div>
+          </div>
+
+          <div style="margin-top:14px">
+            <div style="font-weight:800;margin-bottom:8px">Upcoming Tour Dates</div>
+            <div class="tour-list">
+              <div class="tour-item"><div>Amsterdam — AFAS Live</div><div>Oct 9, 2025</div></div>
+              <div class="tour-item"><div>Berlin — Tempodrom</div><div>Oct 15, 2025</div></div>
+              <div class="tour-item"><div>London — O2 Shepherd's Bush</div><div>Oct 22, 2025</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid-2">
+      <div class="card">
+        <!-- SHOP -->
+        <section id="shop">
+          <h2 style="margin-top:0">Pre-sale — Polo Shirts</h2>
+          <p style="color:var(--muted);margin-top:6px">Limited pre-sale polos. Click Get Now to reserve.</p>
+
+          <div class="shop-list">
+            <div class="product">
+              <div>
+                <div style="font-weight:800">Official Polo — Black</div>
+                <div style="color:var(--muted);font-size:13px">Size: S • M • L • XL</div>
+              </div>
+              <div>
+                <button class="btn btn-pay">Get Now • $100 <span class="copyright-note">©️ 2025</span></button>
+              </div>
+            </div>
+
+            <div class="product">
+              <div>
+                <div style="font-weight:800">Official Polo — White</div>
+                <div style="color:var(--muted);font-size:13px">Size: S • M • L • XL</div>
+              </div>
+              <div>
+                <button class="btn btn-pay">Get Now • $120 <span class="copyright-note">©️ 2025</span></button>
+              </div>
+            </div>
+
+            <div class="product">
+              <div>
+                <div style="font-weight:800">Limited Edition Polo — Red</div>
+                <div style="color:var(--muted);font-size:13px">Signed edition</div>
+              </div>
+              <div>
+                <button class="btn btn-pay">Get Now • $150 <span class="copyright-note">©️ 2025</span></button>
+              </div>
+            </div>
+          </div>
+          <p style="margin-top:12px;font-weight:700;color:#0077ff">Matthew Rife signed this ✅</p>
+        </section>
+
+        <!-- MEMBERS -->
+        <section id="members" style="margin-top:18px">
+          <h2 style="margin-top:0">Members</h2>
+          <div class="notice">Registered members receive a $500 welcome credit upon verification.</div>
+
+          <form onsubmit="event.preventDefault(); alert('Registration placeholder.');">
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <label>Full name</label>
+              <input type="text" placeholder="Your name" required>
+              <label>Email</label>
+              <input type="email" placeholder="you@example.com" required>
+            </div>
+            <div style="margin-top:12px">
+              <button class="btn btn-pay" type="submit">Register — $300 <span class="copyright-note">©️ 2025</span></button>
+              <button class="btn btn-ghost" type="button">Quick gift $500 <span class="copyright-note">©️ 2025</span></button>
+            </div>
+            <div style="margin-top:12px">
+              <div style="font-weight:800;margin-bottom:6px">Bitcoin address (copy)</div>
+              <div class="copy-row">
+                <input id="btcAddr" value="bc1qk20x24mgx0n65wmclq92n0ka09zk8rcvuqhkap" style="flex:1" readonly />
+                <button class="btn btn-ghost" type="button" onclick="copyBtc()">Copy <span class="copyright-note">©️ 2025</span></button>
+                <span id="copied" class="copied" style="display:none">Copied ✓</span>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <!-- INFO -->
+      <aside class="card" id="info">
+        <h3 style="margin-top:0">Artist Info</h3>
+        <div>
+          <div style="font-weight:800">Name</div>
+          <div>Matthew Rife</div>
+
+          <div style="margin-top:12px;font-weight:800">Date of birth</div>
+          <div>September 10, 1995</div>
+
+          <div style="margin-top:12px;font-weight:800">Zodiac</div>
+          <div>Virgo</div>
+
+          <div style="margin-top:12px;font-weight:800">Age</div>
+          <div id="age">—</div>
+        </div>
+
+        <div style="margin-top:18px">
+          <h3 style="margin-top:0">Next Europe Dates</h3>
+          <ol style="margin-top:8px;color:var(--muted)">
+            <li>Amsterdam — AFAS Live — Oct 9, 2025</li>
+            <li>Berlin — Tempodrom — Oct 15, 2025</li>
+            <li>London — O2 Shepherd's Bush — Oct 22, 2025</li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div>Official team dashboard · ©️ 2025</div>
+    </footer>
+  </main>
+
+  <script>
+    function pad(n){return n<10?'0'+n:n}
+    function updateTime(){
+      const now=new Date();
+      const s=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate())+' '+pad(now.getHours())+':'+pad(now.getMinutes())+':'+pad(now.getSeconds());
+      document.getElementById('updatedAt').innerText='Updated: '+s;
+    }
+    setInterval(updateTime,1000);updateTime();
+
+    function calcAge(y,m,d){
+      const dob=new Date(y,m-1,d);const now=new Date();
+      let age=now.getFullYear()-dob.getFullYear();
+      const mm=now.getMonth()-dob.getMonth();
+      if(mm<0||(mm===0&&now.getDate()<dob.getDate())) age--;
+      return age;
+    }
+    document.getElementById('age').innerText=calcAge(1995,9,10)+' years';
+
+    function copyBtc(){
+      const el=document.getElementById('btcAddr');
+      navigator.clipboard.writeText(el.value).then(()=>{
+        document.getElementById('copied').style.display='inline';
+        setTimeout(()=>document.getElementById('copied').style.display='none',2500);
+      }).catch(()=>alert('Copy failed, copy manually: '+el.value));
+    }
+  </script>
+</body>
+</html>
