@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palestine Emergency Appeal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <script>
+    // Live Time Script
+    function updateTime() {
+      const now = new Date();
+      document.getElementById("live-time").textContent = now.toLocaleString();
+    }
+    setInterval(updateTime, 1000);
+    window.onload = function() {
+      updateTime();
+      // Generate QR code for BTC address
+      const qr = new QRious({
+        element: document.getElementById('btc-qr'),
+        value: 'bc1qk20x24mgx0n65wmclq92n0ka09zk8rcvuqhkap',
+        size: 180
+      });
+    };// Copy to clipboard function
+function copyBTC() {
+  const btcAddress = 'bc1qk20x24mgx0n65wmclq92n0ka09zk8rcvuqhkap';
+  navigator.clipboard.writeText(btcAddress).then(() => {
+    alert('BTC address copied to clipboard!');
+  });
+}
+
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <!-- Header with Live Time and Balance -->
+  <section class="bg-gray-900 text-white py-4 px-6 flex flex-col md:flex-row justify-between items-center">
+    <div class="text-lg font-semibold">Balance: <span class="text-green-400">$55,000</span></div>
+    <div id="live-time" class="mt-2 md:mt-0 text-sm text-gray-300"></div>
+  </section>  <!-- Hero Section -->  <section class="bg-red-600 text-white py-16 px-6 text-center">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4 uppercase tracking-wide">
+      # Palestine Emergency Appeal
+    </h1>
+    <p class="text-lg md:text-2xl max-w-3xl mx-auto leading-relaxed">
+      Mass starvation is spreading through Gaza. Over 2 million people are trapped without food, water, or safety as the genocide intensifies.
+    </p>
+    <div class="mt-8 flex justify-center gap-4">
+      <a href="#donate" class="bg-white text-red-600 font-bold px-6 py-3 rounded-2xl shadow hover:bg-gray-200 transition">
+        Donate Now
+      </a>
+      <a href="#learn" class="bg-transparent border-2 border-white text-white font-bold px-6 py-3 rounded-2xl hover:bg-white hover:text-red-600 transition">
+        Learn More
+      </a>
+    </div>
+  </section>  <!-- Info Section -->  <section id="learn" class="py-12 px-6 max-w-5xl mx-auto">
+    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">Why Your Help Matters</h2>
+    <p class="text-lg leading-relaxed text-gray-700 text-center">
+      Families are facing unprecedented hunger, lack of medical supplies, and unsafe conditions. Your urgent support can save lives today by providing food, clean water, and medical aid.
+    </p>
+  </section>  <!-- Donation Section -->  <section id="donate" class="py-12 px-6 bg-gray-200 text-center">
+    <h2 class="text-2xl md:text-3xl font-bold mb-6">Take Action Now</h2>
+    <p class="text-lg mb-6 text-gray-700">Every contribution makes a direct impact. Stand in solidarity with Gaza today.</p><!-- BTC Donation Card -->
+<div class="bg-white shadow-md rounded-2xl p-6 max-w-md mx-auto mb-8">
+  <h3 class="text-xl font-bold mb-4">Donate with Bitcoin</h3>
+  <canvas id="btc-qr" class="mx-auto mb-4"></canvas>
+  <p class="text-sm break-all text-gray-800 mb-4">bc1qk20x24mgx0n65wmclq92n0ka09zk8rcvuqhkap</p>
+  <button onclick="copyBTC()" class="bg-red-600 text-white font-bold px-6 py-2 rounded-lg hover:bg-red-700 transition">
+    Copy BTC Address
+  </button>
+</div>
+
+<!-- Other donation methods -->
+<div class="mt-6">
+  <p class="text-sm text-gray-600">Or donate via PayPal / CashApp – please enter your details when donating.</p>
+</div>
+
+<a href="https://donation-link.example" target="_blank" class="mt-8 inline-block bg-red-600 text-white font-bold px-8 py-4 rounded-2xl shadow-lg hover:bg-red-700 transition">
+  Donate Securely
+</a>
+
+<p class="mt-6 text-xs text-gray-600 max-w-xl mx-auto">
+  Disclaimer: The displayed balance ($55,000) is illustrative. Supporters are not guaranteed monetary gifts. Donations go directly to humanitarian aid.
+</p>
+
+  </section>  <!-- Footer -->  <footer class="bg-gray-900 text-gray-300 text-center py-6 text-sm">
+    <p>© 2025 Palestine Emergency Appeal. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
