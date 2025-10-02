@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wise/DHL Express Shipping Tracker</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+    header, footer {
+        background-color: #003366;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .container {
+        max-width: 700px;
+        margin: 30px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+        color: #003366;
+    }
+    .package-info, .tracking-section, .disclaimer {
+        margin-bottom: 20px;
+    }
+    .tracking-input {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    button {
+        padding: 10px 15px;
+        border: none;
+        background-color: #003366;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0055aa;
+    }
+    .disclaimer {
+        font-size: 0.9em;
+        color: red;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Wise/DHL Express</h1>
+    <p>Your trusted shipping partner</p>
+</header>
+
+<div class="container">
+    <div class="package-info">
+        <h2>Package Details</h2>
+        <p><strong>Package Name:</strong> Mr Morgan</p>
+        <p><strong>Amount:</strong> $55,000</p>
+        <p><strong>Origin:</strong> Sweden</p>
+        <p><strong>Destination:</strong> Germany</p>
+        <p><strong>Last Updated:</strong> <span id="update-time">2025-10-02 11:55 AM</span></p>
+        <p><strong>Exchange Rate:</strong> 1 USD = 0.91 EUR</p>
+    </div>
+
+    <div class="tracking-section">
+        <h2>Track Your Shipment</h2>
+        <p>Enter your tracking number or copy below:</p>
+        <div class="tracking-input">
+            <input type="text" id="tracking-number" value="DHL-2025-1002-XYZ" readonly>
+            <button onclick="copyTracking()">Copy</button>
+            <button onclick="trackPackage()">Track</button>
+        </div>
+        <p id="track-result" style="margin-top:10px;"></p>
+    </div>
+
+    <div class="disclaimer">
+        <p>⚠ Pending delivery fee: €500</p>
+    </div>
+</div>
+
+<footer>
+    <p>Thank you for using Wise/DHL Express. Safe shipping!</p>
+</footer>
+
+<script>
+function copyTracking() {
+    const copyText = document.getElementById("tracking-number");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("Tracking number copied: " + copyText.value);
+}
+
+function trackPackage() {
+    const result = document.getElementById("track-result");
+    result.innerHTML = "Your package Mr Morgan is currently in transit from Sweden to Germany. Estimated delivery: 3-5 business days.";
+}
+</script>
+
+</body>
+</html>
