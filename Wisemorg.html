@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wise/DHL Express</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+    header, footer {
+        background-color: #003366;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .container {
+        max-width: 700px;
+        margin: 30px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+        color: #003366;
+    }
+    .package-info, .tracking-section, .disclaimer, .progress-section, .address-section {
+        margin-bottom: 20px;
+    }
+    .tracking-input {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
+    button {
+        padding: 10px 15px;
+        border: none;
+        background-color: #003366;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0055aa;
+    }
+    .disclaimer {
+        font-size: 0.9em;
+        color: red;
+    }
+    .progress-bar {
+        width: 100%;
+        background-color: #ddd;
+        border-radius: 20px;
+        overflow: hidden;
+        height: 25px;
+    }
+    .progress {
+        width: 0%;
+        height: 100%;
+        background-color: #003366;
+        text-align: center;
+        color: white;
+        line-height: 25px;
+        border-radius: 20px;
+    }
+    #live-time {
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Wise/DHL Express</h1>
+    <p>Your trusted shipping partner</p>
+    <p>Current Time: <span id="live-time"></span></p>
+</header>
+
+<div class="container">
+    <div class="package-info">
+        <h2>Package Details</h2>
+        <p><strong>Package Name:</strong> Mrmorg</p>
+        <p><strong>Amount:</strong> €55,000</p>
+        <p><strong>Origin:</strong> Germany</p>
+        <p><strong>Destination:</strong> Sweden</p>
+        <p><strong>Delivery Date:</strong> 3 Business Days</p>
+        <p><strong>Last Updated:</strong> <span id="update-time"></span></p>
+        <p><strong>Exchange Rate:</strong> 1 EUR = 1.09 USD</p>
+    </div>
+
+    <div class="tracking-section">
+        <h2>Track Your Shipment</h2>
+        <p>Enter your tracking number or copy below:</p>
+        <div class="tracking-input">
+            <input type="text" id="tracking-number" value="DHL-2025-1003-XYZ" readonly>
+            <button onclick="copyTracking()">Copy</button>
+            <button onclick="trackPackage()">Track</button>
+        </div>
+        <p id="track-result" style="margin-top:10px;"></p>
+    </div>
+
+    <div class="progress-section">
+        <h2>Shipment Progress</h2>
+        <div class="progress-bar">
+            <div class="progress" id="progress-bar">70%</div>
+        </div>
+    </div>
+
+    <div class="address-section">
+        <h2>Enter Address Details</h2>
+        <input type="text" id="fullname" placeholder="Full Name">
+        <textarea id="address" placeholder="Full Address"></textarea>
+        <input type="text" id="city" placeholder="City">
+        <input type="text" id="postal" placeholder="Postal Code">
+        <input type="text" id="country" placeholder="Country">
+        <label>
+            <input type="checkbox" id="beneficiary"> Save as Beneficiary
+        </label>
+        <br>
+        <button onclick="saveAddress()">Save Details</button>
+        <p id="address-result" style="color: green; margin-top: 10px;"></p>
+    </div>
+
+    <div class="disclaimer">
+        <p>⚠ Signature required upon delivery. Fee: €500</p>
+        <p>✔ Save as beneficiary and sign off to proceed.</p>
+        <p>⏳ Delivery Countdown: <span id="countdown"></span></p>
+    </div>
+</div>
+
+<footer>
+    <p>Thank you for using Wise/DHL Express. Safe shipping!</p>
+</footer>
+
+<script>
+// Copy tracking number
+function copyTracking() {
+    const copyText = document.getElementById("tracking-number");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("Tracking number copied: " + copyText.value);
+}
+
+// Track package simulation
+function trackPackage() {
+    const result = document.getElementById("track-result");
+    result.innerHTML = "Your package Mrmorg is currently in transit from Germany to Sweden. Estimated delivery: 3 business days.";
+}
+
+// Save Address & Beneficiary
+function saveAddress() {
+    const name = document.getElementById("fullname").value;
+    const addr = document.getElementById("address").value;
+    const city = document.getElementById("city").value;
+    const postal = document.getElementById("postal").value;
+    const country = document.getElementById("country").value;
+    const beneficiary = document.getElementById("beneficiary").checked;
+
+    let msg = `Address saved for ${name}, ${city}, ${country}.`;
+    if (beneficiary) {
+        msg += " Marked as Beneficiary ✔";
+    }
+    document.getElementById("address-result").textContent = msg;
+}
+
+// Update live homepage time
+function updateLiveTime() {
+    const now = new Date();
+    document.getElementById("live-time").textContent = now.toLocaleString('en-GB', { hour12: false });
+}
+
+// Update last updated time every second
+function updateLastUpdated() {
+    const now = new Date();
+    document.getElementById("update-time").textContent = now.toLocaleString('en-GB', { hour12: false });
+}
+
+// Set shipment progress to 70% on load
+function setProgress() {
+    const bar = document.getElementById("progress-bar");
+    bar.style.width = "70%";
+    bar.textContent = "70%";
+}
+
+// Countdown timer for 3 business days (72 hours)
+let countdownTime = 72 * 60 * 60; // 72 hours in seconds
+function updateCountdown() {
+    const countdown = document.getElementById("countdown");
+    let days = Math.floor(countdownTime / (60 * 60 * 24));
+    let hours = Math.floor((countdownTime % (60 * 60 * 24)) / 3600);
+    let minutes = Math.floor((countdownTime % 3600) / 60);
+    let seconds = countdownTime % 60;
+    countdown.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    if(countdownTime > 0) countdownTime--;
+    else countdown.textContent = "Expired";
+}
+
+// Set intervals
+setInterval(updateLiveTime, 1000);
+setInterval(updateLastUpdated, 1000);
+setInterval(updateCountdown, 1000);
+
+// Initial load
+updateLiveTime();
+updateLastUpdated();
+setProgress();
+updateCountdown();
+</script>
+
+</body>
+</html>
