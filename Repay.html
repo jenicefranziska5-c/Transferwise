@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WiseTransfer Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f5f5f5; padding:20px; }
+    .container { max-width:900px; margin:auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
+    h1 { text-align:center; }
+    .section { margin-top:25px; }
+    label { display:block; margin:8px 0 4px; }
+    input, select { width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; }
+    button { margin-top:15px; padding:12px 20px; background:#007bff; color:#fff; border:none; border-radius:8px; cursor:pointer; width:100%; }
+    button:hover { background:#005fcc; }
+    .balance-box { background:#e9f1ff; padding:15px; border-radius:8px; margin-top:10px; }
+    .transaction-log { background:#fafafa; padding:12px; border-radius:8px; margin-top:15px; border:1px solid #ddd; max-height:200px; overflow-y:auto; }
+    .success { color:green; font-weight:bold; }
+    .timer { font-weight:bold; color:#555; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>WiseTransfer Dashboard</h1>
+    <p>Welcome to WiseTransfer — Secure global business payments.</p>
+
+    <!-- BALANCE -->
+    <div class="section">
+      <h2>Your Balance</h2>
+      <div class="balance-box">
+        <span id="balance-amount">$5000.00</span>
+      </div>
+    </div>
+
+    <!-- EXCHANGE RATES -->
+    <div class="section">
+      <h2>Exchange Rate</h2>
+      <div class="balance-box">
+        <p>1 USD = <span id="rate">1500</span> NGN</p>
+      </div>
+    </div>
+
+    <!-- TRANSFER FORM -->
+    <div class="section">
+      <h2>Send Money</h2>
+      <label>Receiver Email</label>
+      <input type="email" id="email" placeholder="Enter receiver email" />
+
+      <label>Amount (USD)</label>
+      <input type="number" id="amount" placeholder="Enter amount" />
+
+      <label>Service Fee</label>
+      <input type="text" id="fee" value="400" disabled />
+
+      <button onclick="sendTransfer()">Send Transfer</button>
+
+      <p id="status" class="success"></p>
+      <p id="timer" class="timer"></p>
+    </div>
+
+    <!-- TRANSACTION HISTORY -->
+    <div class="section">
+      <h2>Transaction Log</h2>
+      <div class="transaction-log" id="log"></div>
+    </div>
+  </div>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
+
+    let balance = 5000;
+    let countdown;
+
+    function sendTransfer() {
+      const email = document.getElementById('email').value.trim();
+      const amount = parseFloat(document.getElementById('amount').value);
+      const fee = 400;
+      const total = amount + fee;
+      const status = document.getElementById('status');
+      const log = document.getElementById('log');
+
+      // Input validation
+      if (!email || !amount || amount <= 0) {
+        status.textContent = 'Please enter a valid email and amount.';
+        status.style.color = 'red';
+        return;
+      }
+      if (total > balance) {
+        status.textContent = 'Insufficient balance.';
+        status.style.color = 'red';
+        return;
+      }
+
+      // Deduct balance
+      balance -= total;
+      document.getElementById('balance-amount').textContent = '$' + balance.toFixed(2);
+
+      // Update status and log
+      status.textContent = `Transfer of $${amount.toFixed(2)} sent to ${email}`;
+      status.style.color = 'green';
+      log.innerHTML = `<p>Sent $${amount.toFixed(2)} to ${email} (Fee: $${fee}) — Email sent</p>` + log.innerHTML;
+
+      // Send email notification
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        to_email: email,
+        amount: amount.toFixed(2)
+      }).then(function(response) {
+        console.log("Email sent!", response.status, response.text);
+      }, function(error) {
+        console.log("Email failed...", error);
+      });
+
+      // Start countdown timer
+      startTimer();
+    }
+
+    function startTimer() {
+      const timerDisplay = document.getElementById('timer');
+      let timeLeft = 10;
+
+      clearInterval(countdown);
+
+      countdown = setInterval(() => {
+        timerDisplay.textContent = `Processing… ${timeLeft}s`;
+        timeLeft--;
+
+        if (timeLeft < 0) {
+          clearInterval(countdown);
+          timerDisplay.textContent = `Completed.`;
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
