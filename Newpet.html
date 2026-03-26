@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pet Insurance USA</title>
+
+<style>
+body {font-family: Arial; margin:0; background:#f4f6f8;}
+header {background:#0a66c2; color:white; padding:15px; text-align:center;}
+.container {padding:20px;}
+.card {background:white; padding:15px; margin:15px 0; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+button {background:#0a66c2; color:white; padding:10px; border:none; border-radius:5px; cursor:pointer;}
+input, select {width:100%; padding:10px; margin:8px 0;}
+.footer {text-align:center; padding:15px; background:#222; color:white;}
+#successBox {display:none; text-align:center;}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🐾 USA Pet Insurance</h1>
+<p id="datetime"></p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>Select Your Pet Insurance Plan</h2>
+<select>
+<option>Dog - Basic Plan ($25/month)</option>
+<option>Dog - Premium Plan ($50/month)</option>
+<option>Cat - Basic Plan ($20/month)</option>
+<option>Cat - Premium Plan ($40/month)</option>
+<option>Exotic Pet Plan ($60/month)</option>
+</select>
+</div>
+
+<div class="card">
+<h2>🎁 Free Pet Food Offer</h2>
+<p>Get 1 month FREE pet food when you register!</p>
+<button onclick="alert('Offer Activated!')">Claim Offer</button>
+</div>
+
+<div class="card">
+<h2>Register for Insurance</h2>
+
+<form id="form">
+<input type="text" placeholder="Full Name" required>
+<input type="email" placeholder="Email Address" required>
+<input type="text" placeholder="Pet Name" required>
+
+<select required>
+<option value="">Select Pet Type</option>
+<option>Dog</option>
+<option>Cat</option>
+<option>Bird</option>
+<option>Other</option>
+</select>
+
+<button type="submit">Register Now</button>
+</form>
+
+<div id="successBox"></div>
+
+</div>
+
+<div class="card">
+<h2>Contact Us</h2>
+<p>Email: wisetransfer688@gmail.com</p>
+</div>
+
+</div>
+
+<div class="footer">
+<p>© 2026 Pet Insurance USA</p>
+</div>
+
+<script>
+// USA Date & Time
+function updateDateTime() {
+  let now = new Date();
+  let options = {
+    timeZone: 'America/New_York',
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  };
+  document.getElementById("datetime").innerHTML =
+    now.toLocaleString('en-US', options) + " (USA)";
+}
+setInterval(updateDateTime, 1000);
+
+// Generate 6-digit registration number
+function generateRegNumber() {
+  return Math.floor(100000 + Math.random() * 900000);
+}
+
+// Form Submit
+document.getElementById("form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let regNumber = generateRegNumber();
+
+  document.getElementById("successBox").innerHTML = `
+    <h3>✅ Registration Confirmed</h3>
+    <p>Your Registration ID: <b>#${regNumber}</b></p>
+    <p>Contact <b>wisetransfer688@gmail.com</b> for delivery details.</p>
+  `;
+
+  document.getElementById("form").style.display = "none";
+  document.getElementById("successBox").style.display = "block";
+});
+</script>
+
+</body>
+</html>
