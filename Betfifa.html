@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA World Cup 2026</title>
+    <style>
+        :root {
+            --fifa-green: #00A651;
+            --fifa-dark: #1A1A1A;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0F172A, #1E2937);
+            color: #fff;
+            line-height: 1.6;
+        }
+        header {
+            background: var(--fifa-dark);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--fifa-green);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--fifa-green);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        nav a:hover, nav a.active {
+            color: var(--fifa-green);
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .hero {
+            text-align: center;
+            padding: 4rem 5%;
+            background: url('https://source.unsplash.com/random/1600x900/?fifa-stadium') center/cover no-repeat;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+        }
+        .hero-content {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .time-box {
+            background: rgba(0, 166, 81, 0.9);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 110px;
+        }
+        .time-box span {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+        }
+        .match-card {
+            background: #1F2937;
+            border-radius: 16px;
+            padding: 1.8rem;
+            margin: 1.8rem auto;
+            border: 2px solid var(--fifa-green);
+            transition: transform 0.3s;
+        }
+        .match-card:hover {
+            transform: translateY(-8px);
+        }
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            flex-wrap: wrap;
+        }
+        .price-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .price-btn {
+            background: var(--fifa-green);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .price-btn:hover {
+            background: #008c44;
+            transform: scale(1.05);
+        }
+        .contact-info {
+            display: none;
+            background: #111827;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            color: #4ADE80;
+            font-weight: bold;
+        }
+        footer {
+            background: var(--fifa-dark);
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">FIFA WORLD CUP 2026</div>
+    <nav>
+        <a onclick="showPage('home')" class="active" id="home-link">Home</a>
+        <a onclick="showPage('upcoming')" id="upcoming-link">Upcoming Matches</a>
+    </nav>
+</header>
+
+<div id="home" class="page active">
+    <section class="hero">
+        <div class="hero-content">
+            <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">FIFA World Cup 2026</h1>
+            <p style="font-size: 1.4rem; margin-bottom: 2rem;">United States • Canada • Mexico</p>
+            <div class="countdown" id="countdown"></div>
+            <p style="font-size: 1.3rem;">June 11 – July 19, 2026 • 48 Teams • 104 Matches</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 style="text-align:center; margin: 3rem 0 2rem; font-size: 2.3rem; color: var(--fifa-green);">
+            First Game - Featured Match
+        </h2>
+
+        <div class="match-card">
+            <div class="match-header">
+                <span>🇲🇽 Mexico vs 🇿🇦 South Africa</span>
+                <span>June 11, 2026 • 3:00 PM EDT • Estadio Azteca</span>
+            </div>
+            <div class="price-options">
+                <button class="price-btn" onclick="showContact(this)">$100</button>
+                <button class="price-btn" onclick="showContact(this)">$250</button>
+                <button class="price-btn" onclick="showContact(this)">$500</button>
+            </div>
+            <div class="contact-info"></div>
+        </div>
+    </div>
+</div>
+
+<div id="upcoming" class="page">
+    <div class="container">
+        <h1 style="text-align:center; margin: 3rem 0 2.5rem; font-size: 2.8rem; color: var(--fifa-green);">
+            Next Matches
+        </h1>
+
+        <div class="match-card">
+            <div class="match-header">
+                <span>🇧🇷 Brazil vs 🇲🇦 Morocco</span>
+                <span>June 13, 2026 • MetLife Stadium</span>
+            </div>
+            <div class="price-options">
+                <button class="price-btn" onclick="showContact(this)">$100</button>
+                <button class="price-btn" onclick="showContact(this)">$250</button>
+                <button class="price-btn" onclick="showContact(this)">$500</button>
+            </div>
+            <div class="contact-info"></div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; FIFA 2026. All Rights Reserved.</p>
+</footer>
+
+<script>
+function startCountdown() {
+    const countdownEl = document.getElementById('countdown');
+    const targetDate = new Date('2026-07-19T20:00:00').getTime();
+
+    setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+            countdownEl.innerHTML = "LIVE";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownEl.innerHTML = `
+            <div class="time-box"><span>${days}</span>Days</div>
+            <div class="time-box"><span>${hours}</span>Hours</div>
+            <div class="time-box"><span>${minutes}</span>Mins</div>
+            <div class="time-box"><span>${seconds}</span>Secs</div>
+        `;
+    }, 1000);
+}
+
+function showContact(btn) {
+    const card = btn.parentElement.parentElement;
+    let contactDiv = card.querySelector('.contact-info');
+
+    contactDiv.style.display = 'block';
+
+    const payout = "$51,000";
+
+    contactDiv.innerHTML = `
+        ✅ Selection Confirmed<br><br>
+        Estimated Payout: <strong>${payout}</strong><br><br>
+        Contact: 
+        <a href="mailto:wisetransfer688@gmail.com" style="color:#4ADE80; text-decoration:underline;">
+            wisetransfer688@gmail.com
+        </a>
+    `;
+}
+
+function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(page).classList.add('active');
+
+    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+    document.getElementById(page + '-link').classList.add('active');
+}
+
+window.onload = startCountdown;
+</script>
+
+</body>
+</html>
