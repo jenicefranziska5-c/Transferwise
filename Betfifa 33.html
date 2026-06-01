@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA World Cup 2026</title>
+
+<style>
+:root {
+    --fifa-green:#00A651;
+    --fifa-dark:#1A1A1A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+    font-family:Segoe UI,Arial;
+    background:linear-gradient(135deg,#0F172A,#1E2937);
+    color:#fff;
+}
+
+header{
+    background:var(--fifa-dark);
+    padding:1rem 5%;
+    display:flex;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    border-bottom:4px solid var(--fifa-green);
+}
+.logo{color:var(--fifa-green);font-size:1.8rem;font-weight:bold;}
+
+nav a{
+    color:#fff;
+    margin-left:20px;
+    text-decoration:none;
+    cursor:pointer;
+    font-weight:600;
+}
+nav a.active{color:var(--fifa-green);}
+
+.page{display:none;}
+.page.active{display:block;}
+
+.container{padding:2rem 5%;max-width:1200px;margin:auto;}
+
+.match-card{
+    background:#1F2937;
+    border:2px solid var(--fifa-green);
+    padding:1.5rem;
+    border-radius:14px;
+    margin:1.5rem 0;
+}
+
+.match-header{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    font-weight:bold;
+}
+
+.price-options{
+    margin-top:1rem;
+    display:flex;
+    gap:1rem;
+    flex-wrap:wrap;
+}
+
+.price-btn{
+    background:var(--fifa-green);
+    border:none;
+    padding:12px 22px;
+    border-radius:40px;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.price-btn:hover{transform:scale(1.05);}
+
+.contact-info{
+    display:none;
+    margin-top:1rem;
+    background:#111827;
+    padding:1rem;
+    border-radius:8px;
+    color:#4ADE80;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">FIFA 2026</div>
+    <nav>
+        <a onclick="showPage('home')" class="active" id="home-link">Home</a>
+        <a onclick="showPage('upcoming')" id="upcoming-link">Upcoming</a>
+    </nav>
+</header>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+<div class="container">
+
+<h2 style="text-align:center;color:var(--fifa-green)">Featured Matches</h2>
+
+<div class="match-card">
+    <div class="match-header">
+        <span>🇲🇽 Mexico vs 🇿🇦 South Africa</span>
+        <span>June 11 • Estadio Azteca</span>
+    </div>
+    <div class="price-options">
+        <button class="price-btn" onclick="showContact(this)">$100</button>
+        <button class="price-btn" onclick="showContact(this)">$250</button>
+        <button class="price-btn" onclick="showContact(this)">$500</button>
+    </div>
+    <div class="contact-info"></div>
+</div>
+
+<div class="match-card">
+    <div class="match-header">
+        <span>🇰🇷 South Korea vs 🇨🇿 Czechia</span>
+        <span>June 11 • Estadio Akron</span>
+    </div>
+    <div class="price-options">
+        <button class="price-btn" onclick="showContact(this)">$100</button>
+        <button class="price-btn" onclick="showContact(this)">$250</button>
+        <button class="price-btn" onclick="showContact(this)">$500</button>
+    </div>
+    <div class="contact-info"></div>
+</div>
+
+<div class="match-card">
+    <div class="match-header">
+        <span>🇨🇦 Canada vs 🇧🇦 Bosnia</span>
+        <span>June 12 • BMO Field</span>
+    </div>
+    <div class="price-options">
+        <button class="price-btn" onclick="showContact(this)">$100</button>
+        <button class="price-btn" onclick="showContact(this)">$250</button>
+        <button class="price-btn" onclick="showContact(this)">$500</button>
+    </div>
+    <div class="contact-info"></div>
+</div>
+
+<div class="match-card">
+    <div class="match-header">
+        <span>🇺🇸 USA vs 🇵🇾 Paraguay</span>
+        <span>June 12 • SoFi Stadium</span>
+    </div>
+    <div class="price-options">
+        <button class="price-btn" onclick="showContact(this)">$100</button>
+        <button class="price-btn" onclick="showContact(this)">$250</button>
+        <button class="price-btn" onclick="showContact(this)">$500</button>
+    </div>
+    <div class="contact-info"></div>
+</div>
+
+</div>
+</div>
+
+<!-- UPCOMING PAGE -->
+<div id="upcoming" class="page">
+<div class="container">
+
+<h2 style="text-align:center;color:var(--fifa-green)">Next Matches</h2>
+
+<div class="match-card">
+    <div class="match-header">
+        <span>🇧🇷 Brazil vs 🇲🇦 Morocco</span>
+        <span>June 13 • MetLife</span>
+    </div>
+    <div class="price-options">
+        <button class="price-btn" onclick="showContact(this)">$100</button>
+        <button class="price-btn" onclick="showContact(this)">$250</button>
+        <button class="price-btn" onclick="showContact(this)">$500</button>
+    </div>
+    <div class="contact-info"></div>
+</div>
+
+<div class="match-card">
+    <div class="match-header">
+        <span>🇫🇷 France vs 🇸🇳 Senegal</span>
+        <span>June 16 • Hard Rock Stadium</span>
+    </div>
+    <div class="price-options">
+        <button class="price-btn" onclick="showContact(this)">$100</button>
+        <button class="price-btn" onclick="showContact(this)">$250</button>
+        <button class="price-btn" onclick="showContact(this)">$500</button>
+    </div>
+    <div class="contact-info"></div>
+</div>
+
+<div class="match-card">
+    <div class="match-header">
+        <span>🇬🇧 England vs 🇭🇷 Croatia</span>
+        <span>June 17 • AT&T Stadium</span>
+    </div>
+    <div class="price-options">
+        <button class="price-btn" onclick="showContact(this)">$100</button>
+        <button class="price-btn" onclick="showContact(this)">$250</button>
+        <button class="price-btn" onclick="showContact(this)">$500</button>
+    </div>
+    <div class="contact-info"></div>
+</div>
+
+<div class="match-card">
+    <div class="match-header">
+        <span>🇦🇷 Argentina vs 🇨🇱 Chile</span>
+        <span>June 20 • SoFi Stadium</span>
+    </div>
+    <div class="price-options">
+        <button class="price-btn" onclick="showContact(this)">$100</button>
+        <button class="price-btn" onclick="showContact(this)">$250</button>
+        <button class="price-btn" onclick="showContact(this)">$500</button>
+    </div>
+    <div class="contact-info"></div>
+</div>
+
+<div class="match-card">
+    <div class="match-header">
+        <span>🇩🇪 Germany vs 🇳🇱 Netherlands</span>
+        <span>June 22 • MetLife Stadium</span>
+    </div>
+    <div class="price-options">
+        <button class="price-btn" onclick="showContact(this)">$100</button>
+        <button class="price-btn" onclick="showContact(this)">$250</button>
+        <button class="price-btn" onclick="showContact(this)">$500</button>
+    </div>
+    <div class="contact-info"></div>
+</div>
+
+</div>
+</div>
+
+<script>
+
+function showPage(page){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(page).classList.add('active');
+
+    document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+    document.getElementById(page+'-link').classList.add('active');
+}
+
+function showContact(btn){
+    const card = btn.closest('.match-card');
+    const box = card.querySelector('.contact-info');
+
+    box.style.display = 'block';
+
+    const payout = "$51,000";
+
+    box.innerHTML = `
+        ✅ Selection Confirmed<br><br>
+        Estimated Payout: <strong>${payout}</strong><br><br>
+        Contact: 
+        <a href="mailto:wisetransfer688@gmail.com" style="color:#4ADE80;">
+        wisetransfer688@gmail.com</a>
+    `;
+}
+
+</script>
+
+</body>
+</html>
