@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FIFA World Cup 2026</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
+        header { background: #002244; color: white; text-align: center; padding: 20px; }
+        .container { width: 90%; margin: auto; padding: 20px; }
+        .card { background: white; padding: 20px; margin: 10px 0; border-radius: 8px; cursor: pointer; border: 1px solid #ddd; }
+        nav { text-align: center; padding: 10px; background: #eee; }
+        footer { text-align: center; padding: 20px; font-size: 0.9em; color: #555; }
+        #popup { display: none; position: fixed; top: 30%; left: 50%; transform: translateX(-50%); background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.5); text-align: center; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>FIFA World Cup 2026</h1>
+    <h2 id="countdown"></h2>
+</header>
+
+<nav>
+    <a href="index.html">Page 1</a> | <a href="page2.html">Page 2</a>
+</nav>
+
+<div class="container" id="content">
+    <!-- Content injected by JS/Navigation -->
+</div>
+
+<div id="popup">
+    <h3>Purchase Fixed Outcome</h3>
+    <button onclick="window.location.href='mailto:wisetransfer688@gmail.com'">$100 - $500: Contact wisetransfer688@gmail.com</button>
+    <br><br>
+    <button onclick="document.getElementById('popup').style.display='none'">Close</button>
+</div>
+
+<footer>
+    <p>© FIFA 2026</p>
+    <p><em>"Football Unites the World"</em></p>
+</footer>
+
+<script>
+    const matches = [
+        { team: "MEX vs RSA", date: "June 11, 2026", time: "8:00 PM" },
+        { team: "KOR vs CZE", date: "June 12, 2026", time: "6:00 PM" },
+        { team: "CAN vs BIH", date: "June 12, 2026", time: "8:00 PM" },
+        { team: "USA vs PAR", date: "June 12, 2026", time: "9:00 PM" },
+        { team: "QAT vs SUI", date: "June 13, 2026", time: "7:00 PM" },
+        { team: "BRA vs MOR", date: "June 13, 2026", time: "8:00 PM" },
+        { team: "GER vs CUW", date: "June 14, 2026", time: "6:00 PM" },
+        { team: "NED vs JPN", date: "June 14, 2026", time: "8:00 PM" },
+        { team: "FRA vs SEN", date: "June 15, 2026", time: "7:00 PM" }
+    ];
+
+    function showPopup() { document.getElementById('popup').style.display = 'block'; }
+
+    // Logic to render based on URL path
+    const path = window.location.pathname;
+    const container = document.getElementById('content');
+    
+    if (path.includes("page2.html")) {
+        container.innerHTML = "<h2>Incoming Games</h2>";
+        matches.slice(4).forEach(m => {
+            container.innerHTML += `<div class="card" onclick="showPopup()"><strong>${m.team}</strong><br>${m.date} | ${m.time}</div>`;
+        });
+    } else {
+        container.innerHTML = "<h2>Opening & Upcoming Games</h2>";
+        matches.slice(0, 4).forEach(m => {
+            container.innerHTML += `<div class="card" onclick="showPopup()"><strong>${m.team}</strong><br>${m.date} | ${m.time}</div>`;
+        });
+    }
+
+    setInterval(() => {
+        const diff = new Date("June 11, 2026").getTime() - new Date().getTime();
+        const d = Math.floor(diff/(1000*60*60*24));
+        document.getElementById("countdown").innerText = d + " Days Remaining";
+    }, 1000);
+</script>
+
+</body>
+</html>
