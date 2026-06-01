@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA World Cup 2026</title>
+
+<style>
+    body{ font-family: Arial, sans-serif; margin:0; background:#f4f4f4; }
+    header{ background:#002244; color:white; text-align:center; padding:20px; }
+    .container{ width:90%; margin:auto; }
+    .card{ background:white; margin:20px 0; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
+    .match{ padding:15px; margin:10px 0; background:#e6f0ff; cursor:pointer; border-radius:8px; border: 1px solid #b3d7ff; }
+    button{ padding:10px 15px; margin:5px; border:none; cursor:pointer; border-radius:5px; }
+    .buy{ background:green; color:white; }
+    .contact-btn{ background:#333; color:white; }
+    #popup{ display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:white; padding:20px; width:320px; box-shadow:0 0 15px rgba(0,0,0,0.3); border-radius:10px; z-index:100; }
+    footer{ text-align: center; padding: 20px; font-size: 0.8em; color: #666; }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>FIFA World Cup 2026</h1>
+    <p>Hosted by USA • Canada • Mexico</p>
+    <h2 id="countdown"></h2>
+    <p id="date"></p>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h2>Fixtures</h2>
+        <!-- First Game -->
+        <div class="match" onclick="openMatch('Mexico vs South Africa', 'June 11, 2026', '8:00 PM', true)">
+            Mexico vs South Africa (Opening Match)
+        </div>
+        <!-- Next 3 Games -->
+        <div class="match" onclick="openMatch('South Korea vs Czech Republic', 'June 12, 2026', '6:00 PM', false)">
+            South Korea vs Czech Republic
+        </div>
+        <div class="match" onclick="openMatch('Canada vs Bosnia and Herzegovina', 'June 12, 2026', '8:00 PM', false)">
+            Canada vs Bosnia and Herzegovina
+        </div>
+        <div class="match" onclick="openMatch('USA vs Paraguay', 'June 12, 2026', '9:00 PM', false)">
+            USA vs Paraguay
+        </div>
+    </div>
+</div>
+
+<div id="popup">
+    <h3 id="team"></h3>
+    <p id="matchDate"></p>
+    <p id="matchTime"></p>
+    
+    <div id="firstGameOptions" style="display:none;">
+        <button class="buy">$120 Ticket</button>
+        <button class="buy">$500 Ticket</button>
+        <button class="buy">VIP Payout: $51,000</button>
+    </div>
+    
+    <div id="generalOptions" style="display:none;">
+        <p>For ticket purchase inquiries, please contact:</p>
+        <button class="contact-btn" onclick="contact()">wisetransfer688@gmail.com</button>
+    </div>
+
+    <br><button onclick="closePopup()">Close</button>
+</div>
+
+<footer>
+    <p>© FIFA 2026</p>
+    <p><em>"Football Unites the World"</em></p>
+</footer>
+
+<script>
+document.getElementById("date").innerText = "Today: " + new Date().toDateString();
+var countdownDate = new Date("June 11, 2026 18:00:00").getTime();
+
+setInterval(function(){
+    var now = new Date().getTime();
+    var diff = countdownDate - now;
+    var d = Math.floor(diff/(1000*60*60*24));
+    var h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    document.getElementById("countdown").innerText = d + " Days " + h + " Hours Left";
+}, 1000);
+
+function openMatch(team, date, time, isFirstGame) {
+    document.getElementById("popup").style.display = "block";
+    document.getElementById("team").innerText = team;
+    document.getElementById("matchDate").innerText = "Date: " + date;
+    document.getElementById("matchTime").innerText = "Kickoff: " + time;
+    
+    document.getElementById("firstGameOptions").style.display = isFirstGame ? "block" : "none";
+    document.getElementById("generalOptions").style.display = isFirstGame ? "none" : "block";
+}
+
+function closePopup() { document.getElementById("popup").style.display = "none"; }
+function contact() { window.location.href = "mailto:wisetransfer688@gmail.com"; }
+</script>
+
+</body>
+</html>
