@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cybercab Experience | Information & Enquiries</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #0b0b0b;
+      color: white;
+      line-height: 1.5;
+    }
+
+    header {
+      text-align: center;
+      padding: 70px 20px 50px;
+      background: linear-gradient(135deg, #000, #1a1a1a);
+    }
+
+    h1 {
+      font-size: 42px;
+      margin: 0 0 12px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      color: #bbb;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .header-text {
+      color: #ccc;
+      max-width: 600px;
+      margin: 0 auto 25px;
+    }
+
+    .btn {
+      background: white;
+      color: black;
+      border: none;
+      padding: 14px 26px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid #555;
+    }
+
+    .btn-secondary:hover {
+      border-color: #888;
+      background: #1a1a1a;
+    }
+
+    section {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: #181818;
+      padding: 28px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      border: 1px solid #333;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .warning {
+      background: #2a2200;
+      border: 1px solid #b88a00;
+      padding: 14px 16px;
+      border-radius: 10px;
+      color: #ffd86b;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* Plan selection */
+    .plans {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .plans {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .plan-card {
+      background: #111;
+      border: 2px solid #333;
+      border-radius: 14px;
+      padding: 22px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .plan-card:hover {
+      border-color: #666;
+      background: #161616;
+    }
+
+    .plan-card.selected {
+      border-color: #ffffff;
+      background: #1f1f1f;
+      box-shadow: 0 0 0 1px #fff;
+    }
+
+    .plan-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .plan-price {
+      font-size: 26px;
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .plan-desc {
+      color: #aaa;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #111;
+      color: white;
+      font-size: 15px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #888;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    .success-box {
+      background: #0d2a1a;
+      border: 1px solid #1a6b3c;
+      color: #7dffa3;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .selected-plan-badge {
+      display: inline-block;
+      background: #222;
+      border: 1px solid #555;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>CYBERCAB EXPERIENCE</h1>
+  <p class="subtitle">Explore the future of autonomous transportation</p>
+  <p class="header-text">
+    Welcome! Discover Cybercab information and available enquiry options.<br>
+    Start your journey by learning more about autonomous mobility.
+  </p>
+  <button class="btn" onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})">
+    APPLY AS A NEW USER
+  </button>
+</header>
+
+<section>
+
+  <!-- Countdown -->
+  <div class="card">
+    <h2>🚕 Cybercab Countdown</h2>
+    <p id="countdown">Loading countdown...</p>
+  </div>
+
+  <!-- Stock -->
+  <div class="card">
+    <h2>📈 Tesla Stock Price</h2>
+    <p class="price" id="stockPrice">Connect an authorized financial-data API</p>
+    <p style="color:#888; font-size:14px; margin:8px 0 0;">
+      Stock information may be delayed and is for informational purposes only.
+    </p>
+  </div>
+
+  <!-- About -->
+  <div class="card">
+    <h2>About the Cybercab</h2>
+    <p>
+      The Cybercab is designed around autonomous transportation concepts and aims to provide a driverless mobility experience.
+    </p>
+    <button class="btn btn-secondary" onclick="toggleDetails()">
+      View Cybercab Details
+    </button>
+    <div id="details" class="hidden" style="margin-top:18px;">
+      <h3 style="margin-bottom:8px;">Interior & Experience</h3>
+      <p>
+        Interior options and final specifications depend on the officially available version and service area.
+      </p>
+      <p>
+        Autonomous rides should only be offered through officially authorized and legally available services.
+      </p>
+    </div>
+  </div>
+
+  <!-- ================= APPLICATION FLOW ================= -->
+  <div class="card" id="apply">
+    <h2>New User Application</h2>
+
+    <div class="warning">
+      This is an enquiry / interest form only. Final availability, pricing and terms will be confirmed by the official service provider.
+    </div>
+
+    <!-- STEP 1: Choose Plan -->
+    <div id="step1" class="step active">
+      <h3 style="margin-top:0;">1. Choose your preferred option</h3>
+      <p style="color:#aaa; margin-bottom:16px;">Select one of the plans below to continue:</p>
+
+      <div class="plans">
+        <div class="plan-card" id="plan-monthly" onclick="selectPlan('monthly')">
+          <h3>Monthly Plan</h3>
+          <div class="plan-price">$3,000</div>
+          <p class="plan-desc">per month</p>
+        </div>
+
+        <div class="plan-card" id="plan-down" onclick="selectPlan('down')">
+          <h3>Down Payment</h3>
+          <div class="plan-price">€1,000</div>
+          <p class="plan-desc">initial payment</p>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn" id="btnNext1" disabled onclick="goToStep(2)">
+          Continue →
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Personal Details -->
+    <div id="step2" class="step">
+      <h3 style="margin-top:0;">2. Your Details</h3>
+      
+      <div class="selected-plan-badge" id="selectedPlanLabel">
+        Selected plan: —
+      </div>
+
+      <div class="form-group">
+        <label for="fullName">Full Name *</label>
+        <input type="text" id="fullName" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone (optional)</label>
+        <input type="tel" id="phone" placeholder="+1 234 567 890">
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-secondary" onclick="goToStep(1)">← Back</button>
+        <button class="btn" onclick="submitApplication()">Submit Application</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Success -->
+    <div id="step3" class="step">
+      <div class="success-box">
+        <h3 style="margin-top:0; color:#7dffa3;">✓ Application Received</h3>
+        <p id="successMessage"></p>
+        <p style="font-size:14px; opacity:0.85; margin-top:12px;">
+          Your details have been saved locally in this browser.<br>
+          We will contact you once official enrolment opens.
+        </p>
+        <button class="btn" style="margin-top:18px;" onclick="resetForm()">
+          Start New Application
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  Cybercab Experience • Informational only • Not an official Tesla service
+</footer>
+
+<script>
+  // ========== Countdown (example target date) ==========
+  const targetDate = new Date("2026-12-31T00:00:00").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+      document.getElementById("countdown").innerHTML = "Target date reached";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+      `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ========== About toggle ==========
+  function toggleDetails() {
+    document.getElementById("details").classList.toggle("hidden");
+  }
+
+  // ========== Application Flow ==========
+  let selectedPlan = null;
+
+  function selectPlan(plan) {
+    selectedPlan = plan;
+
+    // Visual selection
+    document.getElementById("plan-monthly").classList.remove("selected");
+    document.getElementById("plan-down").classList.remove("selected");
+
+    if (plan === "monthly") {
+      document.getElementById("plan-monthly").classList.add("selected");
+      document.getElementById("selectedPlanLabel").textContent = "Selected: $3,000 / month";
+    } else {
+      document.getElementById("plan-down").classList.add("selected");
+      document.getElementById("selectedPlanLabel").textContent = "Selected: €1,000 down payment";
+    }
+
+    document.getElementById("btnNext1").disabled = false;
+  }
+
+  function goToStep(stepNumber) {
+    // Hide all steps
+    document.querySelectorAll(".step").forEach(el => el.classList.remove("active"));
+
+    // Show requested step
+    document.getElementById("step" + stepNumber).classList.add("active");
+
+    // Scroll to top of form
+    document.getElementById("apply").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function submitApplication() {
+    const name = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+
+    if (!name || !email) {
+      alert("Please fill in your name and email address.");
+      return;
+    }
+
+    // Simple email validation
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    if (!selectedPlan) {
+      alert("Please select a plan first.");
+      goToStep(1);
+      return;
+    }
+
+    // Save to localStorage
+    const application = {
+      name: name,
+      email: email,
+      phone: phone || null,
+      plan: selectedPlan,
+      planLabel: selectedPlan === "monthly" ? "$3,000 monthly" : "€1,000 down payment",
+      submittedAt: new Date().toISOString()
+    };
+
+    localStorage.setItem("cybercab_application", JSON.stringify(application));
+
+    // Show success
+    document.getElementById("successMessage").innerHTML = `
+      Thank you, <strong>${name}</strong>!<br>
+      You selected the <strong>${application.planLabel}</strong> option.<br>
+      We have recorded your email: <strong>${email}</strong>
+    `;
+
+    goToStep(3);
+  }
+
+  function resetForm() {
+    selectedPlan = null;
+    document.getElementById("fullName").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("plan-monthly").classList.remove("selected");
+    document.getElementById("plan-down").classList.remove("selected");
+    document.getElementById("btnNext1").disabled = true;
+    document.getElementById("selectedPlanLabel").textContent = "Selected plan: —";
+    goToStep(1);
+  }
+
+  // Optional: Load previous application on page load
+  window.addEventListener("DOMContentLoaded", () => {
+    const saved = localStorage.getItem("cybercab_application");
+    if (saved) {
+      try {
+        const data = JSON.parse(saved);
+        console.log("Previous application found:", data);
+      } catch (e) {}
+    }
+  });
+</script>
+
+</body>
+</html>
