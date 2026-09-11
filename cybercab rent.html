@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tesla Cybercab | Autonomous Rental</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; }
+    
+    body {
+      background: linear-gradient(135deg, #0b0c10 0%, #1a1a2e 50%, #0b0c10 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* Header / Nav */
+    header {
+      background: rgba(15, 15, 20, 0.95);
+      border-bottom: 1px solid #333;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+    .logo span { color: #e82127; }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    #live-clock {
+      font-size: 0.85rem;
+      color: #c5c6c7;
+      background: #0b0c10;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      font-variant-numeric: tabular-nums;
+    }
+    .stock-ticker {
+      background: #0b0c10;
+      border: 1px solid #45a29e;
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .stock-ticker .symbol { color: #e82127; font-weight: 700; }
+    .stock-ticker .price { color: #fff; font-weight: 600; }
+    .stock-ticker .change.down { color: #fc8181; }
+    .stock-ticker .change.up { color: #48bb78; }
+
+    /* Main layout */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #fff, #c5c6c7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero .subtitle {
+      color: #e82127;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      color: #a0aec0;
+      max-width: 560px;
+      margin: 0 auto 30px;
+      font-size: 1.05rem;
+    }
+
+    /* Cards grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2rem; }
+      header { flex-direction: column; gap: 12px; }
+    }
+
+    .card {
+      background: #1f2833;
+      border: 1px solid #333;
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      color: #66fcf1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Pricing */
+    .pricing-box {
+      background: #0b0c10;
+      border-left: 4px solid #e82127;
+      padding: 16px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 20px;
+    }
+    .rate { font-size: 1.5rem; font-weight: 700; color: #fff; }
+    .potential { font-size: 0.95rem; color: #45a29e; margin-top: 6px; }
+
+    /* Form */
+    input, select, button {
+      width: 100%;
+      padding: 13px 14px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #45a29e;
+      background: #0b0c10;
+      color: #fff;
+      font-size: 0.95rem;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #66fcf1;
+      box-shadow: 0 0 0 2px rgba(102, 252, 241, 0.2);
+    }
+    button {
+      background: #e82127;
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 1px;
+    }
+    button:hover { background: #c01115; }
+    button:active { transform: scale(0.98); }
+
+    /* Confirmation */
+    #confirmation-card {
+      display: none;
+      background: #13271d;
+      border: 1px solid #276749;
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .accepted-badge {
+      background: #276749;
+      color: #48bb78;
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+    }
+    #uniqueCode {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #66fcf1;
+      letter-spacing: 3px;
+      margin: 10px 0;
+    }
+
+    /* Stock card */
+    .stock-card {
+      text-align: center;
+    }
+    .stock-price-big {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 10px 0;
+    }
+    .stock-change {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+    .stock-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #a0aec0;
+      margin-top: 16px;
+      text-align: left;
+    }
+    .stock-meta div {
+      background: #0b0c10;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .stock-meta span { color: #fff; font-weight: 600; display: block; }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 768px) {
+      .features { grid-template-columns: 1fr; }
+    }
+    .feature {
+      background: #1f2833;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .feature .icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .feature h3 { font-size: 1rem; margin-bottom: 6px; color: #66fcf1; }
+    .feature p { font-size: 0.85rem; color: #a0aec0; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #666;
+      font-size: 0.85rem;
+      border-top: 1px solid #333;
+      margin-top: 20px;
+    }
+    .motto {
+      font-style: italic;
+      color: #888;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">TESLA <span>CYBERCAB</span></div>
+    <div class="header-right">
+      <div class="stock-ticker" id="stock-ticker">
+        <span class="symbol">TSLA</span>
+        <span class="price" id="header-price">$363.56</span>
+        <span class="change down" id="header-change">-1.16%</span>
+      </div>
+      <div id="live-clock">Loading clock...</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>CYBERCAB</h1>
+      <div class="subtitle">Autonomous Rental Startup</div>
+      <p>Own the future of mobility. Rent Tesla Cybercabs and start earning with fully autonomous rides. Live system • Real-time tracking • Instant confirmation.</p>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <div class="icon">🤖</div>
+        <h3>Fully Autonomous</h3>
+        <p>No driver needed. Cybercab handles the entire trip.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">💰</div>
+        <h3>Earn While You Sleep</h3>
+        <p>Estimated monthly returns €1,500 – €6,000 depending on plan.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">⚡</div>
+        <h3>Instant Access</h3>
+        <p>Submit request and receive unique confirmation code immediately.</p>
+      </div>
+    </section>
+
+    <div class="grid">
+      <!-- Booking Card -->
+      <div class="card">
+        <h2>📅 Book Your Cybercab</h2>
+        
+        <div class="pricing-box">
+          <div>Tesla Base Rate: <span class="rate">€1,500 / Weekly</span></div>
+          <div class="potential">Estimated Monthly Earnings: <strong>€1,500 – €6,000</strong></div>
+        </div>
+
+        <form id="bookingForm">
+          <input type="email" id="email" placeholder="Enter your Email Address" required />
+          <input type="text" id="town" placeholder="Enter your Town / City" required />
+          
+          <select id="rentalOption" required>
+            <option value="1500">Weekly Access — €1,500 / week</option>
+            <option value="3000">Bi-Weekly Fleet — €3,000 / 2 weeks</option>
+            <option value="6000">Monthly VIP Fleet — €6,000 / month</option>
+          </select>
+
+          <button type="submit">SUBMIT RENTAL REQUEST</button>
+        </form>
+
+        <div id="confirmation-card">
+          <div class="accepted-badge">✓ ACCEPTED</div>
+          <p style="margin: 5px 0; color: #c6f6d5;">Unique Confirmation Code:</p>
+          <div id="uniqueCode"></div>
+          <p style="font-size: 0.9rem; color: #a0aec0; margin-top: 15px;">
+            Your request is sent to <strong style="color:#66fcf1;">wisetranfer688@gmail.com</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- Stock Card -->
+      <div class="card stock-card">
+        <h2>📈 Tesla Stock (TSLA)</h2>
+        <div class="stock-price-big" id="stock-price">$363.56</div>
+        <div class="stock-change down" id="stock-change">▼ -4.25 (−1.16%)</div>
+        <p style="color:#a0aec0; font-size:0.85rem;">As of Sep 10, 2026 • Delayed / Approximate</p>
+        
+        <div class="stock-meta">
+          <div>
+            Open
+            <span id="stock-open">$360.60</span>
+          </div>
+          <div>
+            Previous Close
+            <span id="stock-prev">$367.81</span>
+          </div>
+          <div>
+            Day Range
+            <span>$357.68 – $369.21</span>
+          </div>
+          <div>
+            52-Week
+            <span>$297.38 – $498.83</span>
+          </div>
+          <div>
+            Market Cap
+            <span>~$1.44T</span>
+          </div>
+          <div>
+            Volume
+            <span>~29.6M</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="motto">"To accelerate the world's transition to sustainable energy." — Tesla</div>
+    <div>© 2026 Tesla Cybercab Autonomous Rental • Live Demo Homepage</div>
+  </footer>
+
+  <script>
+    // ========== LIVE CLOCK + DATE ==========
+    function updateClock() {
+      const now = new Date();
+      
+      // Local time with date
+      const options = { 
+        weekday: 'short', 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric',
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit',
+        hour12: false 
+      };
+      const localStr = now.toLocaleString(undefined, options);
+      
+      // UTC
+      const utcStr = now.toUTCString().replace('GMT', 'UTC');
+      
+      document.getElementById('live-clock').innerHTML = 
+        `🕒 ${localStr}<br><span style="font-size:0.75rem;opacity:0.7">${utcStr}</span>`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // ========== FORM SUBMISSION ==========
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Generate Unique Code
+      const uniqueCode = 'TSLA-' + Math.random().toString(36).substr(2, 6).toUpperCase() + 
+                         '-' + Date.now().toString(36).slice(-4).toUpperCase();
+
+      document.getElementById('bookingForm').style.display = 'none';
+      document.getElementById('uniqueCode').innerText = uniqueCode;
+      document.getElementById('confirmation-card').style.display = 'block';
+    });
+
+    // Optional: slight visual pulse on stock ticker every few seconds
+    setInterval(() => {
+      const ticker = document.getElementById('stock-ticker');
+      ticker.style.borderColor = '#66fcf1';
+      setTimeout(() => ticker.style.borderColor = '#45a29e', 400);
+    }, 8000);
+  </script>
+</body>
+</html>
