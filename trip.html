@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Travel Community Experiences</title>
+
+  <meta
+    name="description"
+    content="Independent seven-day travel and community experiences available from October through December 2026."
+  >
+
+  <style>
+    :root {
+      --dark: #111827;
+      --dark-2: #1f2937;
+      --text: #17202a;
+      --muted: #68707c;
+      --light: #f5f7fa;
+      --white: #ffffff;
+      --border: #e4e7eb;
+      --accent: #b7791f;
+      --accent-dark: #8c5c16;
+      --success: #047857;
+      --success-bg: #ecfdf5;
+      --warning-bg: #fff7ed;
+      --warning-border: #f97316;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    header {
+      background: var(--dark);
+      color: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      min-height: 72px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+    }
+
+    .logo span {
+      color: #e7b65c;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    nav a {
+      color: #d1d5db;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .nav-button {
+      background: white;
+      color: var(--dark);
+      padding: 10px 16px;
+      border-radius: 8px;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      background:
+        linear-gradient(
+          135deg,
+          #111827 0%,
+          #1f2937 60%,
+          #293548 100%
+        );
+      color: white;
+      padding: 90px 20px;
+    }
+
+    .hero-inner {
+      max-width: 1180px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #e7b65c;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 70px);
+      line-height: 1.04;
+      letter-spacing: -2px;
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      color: #d7dce3;
+      font-size: 18px;
+      max-width: 700px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      cursor: pointer;
+      border-radius: 9px;
+      padding: 14px 22px;
+      font-weight: 800;
+      transition: .2s ease;
+    }
+
+    .button-primary {
+      background: white;
+      color: var(--dark);
+    }
+
+    .button-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(255,255,255,.25);
+      color: white;
+      background: transparent;
+    }
+
+    .hero-panel {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .hero-panel h3 {
+      margin-bottom: 15px;
+    }
+
+    .hero-panel p {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    /* =========================
+       GENERAL
+    ========================== */
+
+    .section {
+      padding: 75px 20px;
+    }
+
+    .section-inner {
+      max-width: 1180px;
+      margin: auto;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    /* =========================
+       NOTICE
+    ========================== */
+
+    .notice {
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-border);
+      padding: 18px 20px;
+      border-radius: 8px;
+      margin-bottom: 35px;
+    }
+
+    .notice strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    /* =========================
+       FEATURE GRID
+    ========================== */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature {
+      background: white;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+    }
+
+    .feature-number {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .feature h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* =========================
+       PACKAGES
+    ========================== */
+
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .package {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+      position: relative;
+    }
+
+    .package.premium {
+      border: 2px solid var(--accent);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      background: #fef3c7;
+      color: #92400e;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .package h3 {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .package-description {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .price {
+      font-size: 36px;
+      font-weight: 900;
+      margin: 18px 0;
+    }
+
+    .price small {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .package ul {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .package li {
+      padding: 9px 0;
+      border-bottom: 1px solid #edf0f2;
+      font-size: 15px;
+    }
+
+    .package li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: 900;
+      margin-right: 10px;
+    }
+
+    /* =========================
+       DATES
+    ========================== */
+
+    .dates {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .date-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 20px;
+    }
+
+    .date-card .month {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .date-card .day {
+      font-size: 28px;
+      font-weight: 900;
+      margin: 5px 0;
+    }
+
+    .date-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================
+       ITINERARY
+    ========================== */
+
+    .itinerary {
+      max-width: 850px;
+    }
+
+    .day {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 23px;
+      border-radius: 13px;
+      margin-bottom: 13px;
+    }
+
+    .day-title {
+      font-weight: 900;
+      margin-bottom: 5px;
+    }
+
+    .day p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* =========================
+       INCLUDED
+    ========================== */
+
+    .included-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .included-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 28px;
+    }
+
+    .included-box h3 {
+      margin-bottom: 15px;
+    }
+
+    .included-box ul {
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .included-box li {
+      margin: 8px 0;
+    }
+
+    /* =========================
+       BOOKING
+    ========================== */
+
+    .booking-wrapper {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .booking-info,
+    .booking-form {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 30px;
+    }
+
+    .booking-info h3,
+    .booking-form h3 {
+      font-size: 25px;
+      margin-bottom: 15px;
+    }
+
+    .booking-info p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #cfd5dc;
+      border-radius: 9px;
+      outline: none;
+      background: white;
+      color: var(--text);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .total-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin: 20px 0;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-weight: 800;
+    }
+
+    .submit {
+      width: 100%;
+      background: var(--dark);
+      color: white;
+    }
+
+    .confirmation {
+      display: none;
+      background: var(--success-bg);
+      border: 1px solid #6ee7b7;
+      border-radius: 12px;
+      padding: 22px;
+      margin-top: 20px;
+    }
+
+    .confirmation h4 {
+      color: var(--success);
+      margin-bottom: 8px;
+    }
+
+    .reference {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin: 10px 0;
+    }
+
+    /* =========================
+       FAQ
+    ========================== */
+
+    .faq {
+      max-width: 850px;
+    }
+
+    details {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      padding: 18px 20px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    details p {
+      color: var(--muted);
+      padding-top: 12px;
+    }
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact {
+      background: var(--dark);
+      color: white;
+      border-radius: 20px;
+      padding: 45px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .contact p {
+      color: #cbd5e1;
+    }
+
+    .contact-email {
+      display: inline-block;
+      margin-top: 18px;
+      color: #f3c66b;
+      font-weight: 800;
+      word-break: break-word;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      background: #0b1120;
+      color: #9ca3af;
+      text-align: center;
+      padding: 35px 20px;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 850px) {
+
+      nav {
+        display: none;
+      }
+
+      .hero-inner,
+      .booking-wrapper,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .features,
+      .packages,
+      .included-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dates {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero {
+        padding: 65px 20px;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .dates {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 55px 15px;
+      }
+
+      .hero {
+        padding: 55px 15px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .contact {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<header>
+  <div class="nav">
+
+    <a href="#home" class="logo">
+      Travel<span>Community</span>
+    </a>
+
+    <nav>
+      <a href="#experience">Experience</a>
+      <a href="#packages">Packages</a>
+      <a href="#dates">Dates</a>
+      <a href="#faq">FAQ</a>
+      <a href="#booking" class="nav-button">Book</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero" id="home">
+
+  <div class="hero-inner">
+
+    <div>
+
+      <div class="eyebrow">
+        2026 Travel Experiences
+      </div>
+
+      <h1>
+        Travel together.<br>
+        Experience more.
+      </h1>
+
+      <p>
+        Discover professionally organized seven-day group travel
+        experiences designed around connection, exploration and
+        memorable community experiences.
+      </p>
+
+      <div class="hero-actions">
+
+        <a href="#booking" class="button button-primary">
+          Request a Booking
+        </a>
+
+        <a href="#dates" class="button button-secondary">
+          View Available Dates
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="hero-panel">
+
+      <h3>
+        2026 Booking Window
+      </h3>
+
+      <p>
+        Experiences are scheduled from October through December 2026.
+        The final listed booking date is December 27, 2026.
+      </p>
+
+      <br>
+
+      <p>
+        Every experience is planned for a seven-day stay.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     IMPORTANT NOTICE
+========================== -->
+
+<section class="section">
+
+  <div class="section-inner">
+
+    <div class="notice">
+
+      <strong>Important information</strong>
+
+      This website represents an independent travel/community project.
+      It is not an official celebrity website or management channel
+      unless separately verified through the relevant person's official
+      channels.
+
+      <br><br>
+
+      A booking request does not automatically confirm a trip.
+      Availability, itinerary, accommodation, cancellation terms and
+      final payment instructions must be confirmed before payment.
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     EXPERIENCE
+========================== -->
+
+<section class="section" id="experience">
+
+  <div class="section-inner">
+
+    <div class="section-heading">
+
+      <h2>
+        Designed around the experience
+      </h2>
+
+      <p>
+        Each seven-day program combines organized activities,
+        community time and personal flexibility.
+      </p>
+
+    </div>
+
+
+    <div class="features">
+
+      <div class="feature">
+
+        <div class="feature-number">
+          01
+        </div>
+
+        <h3>
+          Seven-Day Program
+        </h3>
+
+        <p>
+          A structured seven-day experience with planned activities
+          and dedicated free time.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-number">
+          02
+        </div>
+
+        <h3>
+          Community
+        </h3>
+
+        <p>
+          Meet other participants and take part in organized
+          community activities throughout the trip.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-number">
+          03
+        </div>
+
+        <h3>
+          Coordinated Travel
+        </h3>
+
+        <p>
+          Participants receive confirmed itinerary and coordination
+          information before their trip.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PACKAGES
+========================== -->
+
+<section class="section" id="packages">
+
+  <div class="section-inner">
+
+    <div class="section-heading">
+
+      <h2>
+        Choose your experience
+      </h2>
+
+      <p>
+        Two package levels are available. Final inclusions and
+        availability are confirmed before payment.
+      </p>
+
+    </div>
+
+
+    <div class="packages">
+
+      <div class="package">
+
+        <span class="badge">
+          Essential
+        </span>
+
+        <h3>
+          Essential Trip
+        </h3>
+
+        <p class="package-description">
+          A straightforward seven-day community travel experience.
+        </p>
+
+        <div class="price">
+          $1,500
+          <small>
+            / participant
+          </small>
+        </div>
+
+        <ul>
+
+          <li>
+            Seven-day itinerary
+          </li>
+
+          <li>
+            Group activities
+          </li>
+
+          <li>
+            Community events
+          </li>
+
+          <li>
+            Travel coordination
+          </li>
+
+          <li>
+            Participant support
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <div class="package premium">
+
+        <span class="badge">
+          Premium
+        </span>
+
+        <h3>
+          Premium Trip
+        </h3>
+
+        <p class="package-description">
+          An enhanced seven-day experience with additional
+          premium activities and accommodation category.
+        </p>
+
+        <div class="price">
+          $2,500
+          <small>
+            / participant
+          </small>
+        </div>
+
+        <ul>
+
+          <li>
+            Seven-day itinerary
+          </li>
+
+          <li>
+            Premium accommodation category
+          </li>
+
+          <li>
+            Priority activities
+          </li>
+
+          <li>
+            Additional community experiences
+          </li>
+
+          <li>
+            Participant support
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     DATES
+========================== -->
+
+<section class="section" id="dates">
+
+  <div class="section-inner">
+
+    <div class="section-heading">
+
+      <h2>
+        2026 departure dates
+      </h2>
+
+      <p>
+        Select your preferred start date during the booking process.
+        Each listed trip is planned as a seven-day experience.
+      </p>
+
+    </div>
+
+
+    <div class="dates">
+
+      <div class="date-card">
+        <div class="month">October</div>
+        <div class="day">10</div>
+        <p>Seven-day experience</p>
+      </div>
+
+      <div class="date-card">
+        <div class="month">October</div>
+        <div class="day">24</div>
+        <p>Seven-day experience</p>
+      </div>
+
+      <div class="date-card">
+        <div class="month">November</div>
+        <div class="day">7</div>
+        <p>Seven-day experience</p>
+      </div>
+
+      <div class="date-card">
+        <div class="month">November</div>
+        <div class="day">21</div>
+        <p>Seven-day experience</p>
+      </div>
+
+      <div class="date-card">
+        <div class="month">December</div>
+        <div class="day">5</div>
+        <p>Seven-day experience</p>
+      </div>
+
+      <div class="date-card">
+        <div class="month">December</div>
+        <div class="day">12</div>
+        <p>Seven-day experience</p>
+      </div>
+
+      <div class="date-card">
+        <div class="month">December</div>
+        <div class="day">19</div>
+        <p>Seven-day experience</p>
+      </div>
+
+      <div class="date-card">
+        <div class="month">December</div>
+        <div class="day">27</div>
+        <p>Final listed booking date</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ITINERARY
+========================== -->
+
+<section class="section">
+
+  <div class="section-inner">
+
+    <div class="section-heading">
+
+      <h2>
+        Example seven-day itinerary
+      </h2>
+
+      <p>
+        The precise destination and schedule should be confirmed
+        with the organizer before payment.
+      </p>
+
+    </div>
+
+
+    <div class="itinerary">
+
+      <div class="day">
+        <div class="day-title">Day 1 — Arrival & Welcome</div>
+        <p>
+          Arrival, check-in, orientation and welcome gathering.
+        </p>
+      </div>
+
+      <div class="day">
+        <div class="day-title">Day 2 — Local Experience</div>
+        <p>
+          Guided local experience followed by community activities.
+        </p>
+      </div>
+
+      <div class="day">
+        <div class="day-title">Day 3 — Exploration</div>
+        <p>
+          Organized sightseeing and group exploration.
+        </p>
+      </div>
+
+      <div class="day">
+        <div class="day-title">Day 4 — Community Day</div>
+        <p>
+          Dedicated community activities and participant interaction.
+        </p>
+      </div>
+
+      <div class="day">
+        <div class="day-title">Day 5 — Flexible Experience</div>
+        <p>
+          Optional activities and personal exploration time.
+        </p>
+      </div>
+
+      <div class="day">
+        <div class="day-title">Day 6 — Final Group Experience</div>
+        <p>
+          Final organized activity followed by a closing gathering.
+        </p>
+      </div>
+
+      <div class="day">
+        <div class="day-title">Day 7 — Departure</div>
+        <p>
+          Check-out, departure coordination and conclusion of the trip.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     INCLUDED / NOT INCLUDED
+========================== -->
+
+<section class="section">
+
+  <div class="section-inner">
+
+    <div class="section-heading">
+
+      <h2>
+        Know what you're booking
+      </h2>
+
+      <p>
+        Final inclusions must be stated on the confirmed booking
+        documentation.
+      </p>
+
+    </div>
+
+
+    <div class="included-grid">
+
+      <div class="included-box">
+
+        <h3>
+          Potentially included
+        </h3>
+
+        <ul>
+          <li>Seven-day itinerary</li>
+          <li>Organized group activities</li>
+          <li>Community experiences</li>
+          <li>Travel coordination</li>
+          <li>Participant communication</li>
+        </ul>
+
+      </div>
+
+
+      <div class="included-box">
+
+        <h3>
+          Confirm before payment
+        </h3>
+
+        <ul>
+          <li>Accommodation details</li>
+          <li>Flights or transportation</li>
+          <li>Travel insurance</li>
+          <li>Meals</li>
+          <li>Cancellation/refund conditions</li>
+          <li>Taxes and additional fees</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     BOOKING
+========================== -->
+
+<section class="section" id="booking">
+
+  <div class="section-inner">
+
+    <div class="section-heading">
+
+      <h2>
+        Request your booking
+      </h2>
+
+      <p>
+        Submit your preferred date and package. Your request will
+        receive a unique reference number.
+      </p>
+
+    </div>
+
+
+    <div class="booking-wrapper">
+
+      <div class="booking-info">
+
+        <h3>
+          Before you submit
+        </h3>
+
+        <p>
+          Your request is not a payment or confirmed reservation.
+        </p>
+
+        <p>
+          The organizer must confirm availability, destination,
+          accommodation, itinerary and final price before payment.
+        </p>
+
+        <p>
+          Keep your booking reference after submitting the form.
+        </p>
+
+        <strong>
+          Contact
+        </strong>
+
+        <br>
+
+        <a
+          class="contact-email"
+          href="mailto:wisetransfer688@gmail.com"
+        >
+          wisetransfer688@gmail.com
+        </a>
+
+      </div>
+
+
+      <div class="booking-form">
+
+        <h3>
+          Booking request
+        </h3>
+
+        <form id="bookingForm">
+
+          <div class="form-group">
+
+            <label for="fullName">
+              Full name
+            </label>
+
+            <input
+              id="fullName"
+              type="text"
+              placeholder="Your full name"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="email">
+              Email address
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="date">
+              Preferred trip date
+            </label>
+
+            <select id="date" required>
+
+              <option value="">
+                Select a date
+              </option>
+
+              <option value="October 10, 2026">
+                October 10, 2026
+              </option>
+
+              <option value="October 24, 2026">
+                October 24, 2026
+              </option>
+
+              <option value="November 7, 2026">
+                November 7, 2026
+              </option>
+
+              <option value="November 21, 2026">
+                November 21, 2026
+              </option>
+
+              <option value="December 5, 2026">
+                December 5, 2026
+              </option>
+
+              <option value="December 12, 2026">
+                December 12, 2026
+              </option>
+
+              <option value="December 19, 2026">
+                December 19, 2026
+              </option>
+
+              <option value="December 27, 2026">
+                December 27, 2026
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="package">
+              Package
+            </label>
+
+            <select id="package" required>
+
+              <option value="">
+                Select package
+              </option>
+
+              <option
+                value="Essential"
+                data-price="1500"
+              >
+                Essential Trip — $1,500
+              </option>
+
+              <option
+                value="Premium"
+                data-price="2500"
+              >
+                Premium Trip — $2,500
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="guests">
+              Number of participants
+            </label>
+
+            <select id="guests" required>
+
+              <option value="1">1 participant</option>
+              <option value="2">2 participants</option>
+              <option value="3">3 participants</option>
+              <option value="4">4 participants</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="message">
+              Additional information
+            </label>
+
+            <textarea
+              id="message"
+              placeholder="Tell us anything relevant to your request."
+            ></textarea>
+
+          </div>
+
+
+          <div class="total-box">
+
+            <div class="total-row">
+
+              <span>
+                Estimated request total
+              </span>
+
+              <span id="total">
+                $0
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <button
+            class="button submit"
+            type="submit"
+          >
+            Submit Booking Request
+          </button>
+
+
+          <div
+            class="confirmation"
+            id="confirmation"
+          >
+
+            <h4>
+              Request received
+            </h4>
+
+            <p>
+              Your booking reference is:
+            </p>
+
+            <div
+              class="reference"
+              id="reference"
+            ></div>
+
+            <p>
+              Keep this reference for your records.
+              This reference does not confirm payment or guarantee
+              availability.
+            </p>
+
+            <p>
+              For completion and official confirmation, contact:
+              <strong>
+                wisetransfer688@gmail.com
+              </strong>
+            </p>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FAQ
+========================== -->
+
+<section class="section" id="faq">
+
+  <div class="section-inner">
+
+    <div class="section-heading">
+
+      <h2>
+        Frequently asked questions
+      </h2>
+
+    </div>
+
+
+    <div class="faq">
+
+      <details>
+        <summary>
+          How long is each trip?
+        </summary>
+
+        <p>
+          Each listed experience is planned as a seven-day trip.
+          The exact arrival and departure times depend on the
+          confirmed itinerary.
+        </p>
+      </details>
+
+
+      <details>
+        <summary>
+          Is submitting the form a confirmed booking?
+        </summary>
+
+        <p>
+          No. It creates a booking request. Availability and final
+          terms must be confirmed before payment.
+        </p>
+      </details>
+
+
+      <details>
+        <summary>
+          Can I choose my trip date?
+        </summary>
+
+        <p>
+          Yes. Select your preferred date from the available dates
+          shown on the booking form.
+        </p>
+      </details>
+
+
+      <details>
+        <summary>
+          Are flights included?
+        </summary>
+
+        <p>
+          Do not assume flights or transportation are included.
+          Confirm the final inclusions in writing before payment.
+        </p>
+      </details>
+
+
+      <details>
+        <summary>
+          How do I receive my booking reference?
+        </summary>
+
+        <p>
+          A unique reference is generated immediately after submitting
+          the booking request. A production website should also store
+          this reference in a secure database and email it to the
+          participant.
+        </p>
+      </details>
+
+
+      <details>
+        <summary>
+          What happens after I submit?
+        </summary>
+
+        <p>
+          Your request should be reviewed by the organizer. They
+          should confirm availability, itinerary, accommodation,
+          total price and cancellation terms before requesting payment.
+        </p>
+      </details>
+
+
+      <details>
+        <summary>
+          Can I cancel?
+        </summary>
+
+        <p>
+          Cancellation and refund conditions must be provided in the
+          official booking agreement before payment.
+        </p>
+      </details>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================== -->
+
+<section class="section">
+
+  <div class="section-inner">
+
+    <div class="contact">
+
+      <div>
+
+        <div class="eyebrow">
+          Contact
+        </div>
+
+        <h2>
+          Have a question?
+        </h2>
+
+        <p>
+          For legitimate booking enquiries, itinerary questions or
+          completion information, contact the travel organizer.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Booking enquiries
+        </h3>
+
+        <a
+          class="contact-email"
+          href="mailto:wisetransfer688@gmail.com"
+        >
+          wisetransfer688@gmail.com
+        </a>
+
+        <p style="margin-top:20px;">
+          Please include your booking reference when contacting the
+          organizer about an existing request.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+  <p>
+    <strong>Travel Community Experiences</strong>
+  </p>
+
+  <p style="margin-top:8px;">
+    Independent travel/community project.
+  </p>
+
+  <p style="margin-top:12px;">
+    © 2026 Travel Community Experiences. All rights reserved.
+  </p>
+
+</footer>
+
+
+<script>
+
+  /* =========================
+     PACKAGE PRICE CALCULATOR
+  ========================== */
+
+  const packageSelect =
+    document.getElementById("package");
+
+  const guestsSelect =
+    document.getElementById("guests");
+
+  const totalElement =
+    document.getElementById("total");
+
+
+  function updateTotal() {
+
+    const selected =
+      packageSelect.options[
+        packageSelect.selectedIndex
+      ];
+
+    const price =
+      Number(selected.dataset.price || 0);
+
+    const guests =
+      Number(guestsSelect.value || 1);
+
+    const total =
+      price * guests;
+
+    totalElement.textContent =
+      "$" + total.toLocaleString("en-US");
+
+  }
+
+
+  packageSelect.addEventListener(
+    "change",
+    updateTotal
+  );
+
+  guestsSelect.addEventListener(
+    "change",
+    updateTotal
+  );
+
+
+  /* =========================
+     UNIQUE BOOKING REFERENCE
+  ========================== */
+
+  function createBookingReference() {
+
+    const timestamp =
+      Date.now()
+        .toString()
+        .slice(-7);
+
+    const random =
+      Math.random()
+        .toString(36)
+        .substring(2, 7)
+        .toUpperCase();
+
+    return "TCE-" + timestamp + "-" + random;
+
+  }
+
+
+  /* =========================
+     BOOKING FORM
+  ========================== */
+
+  document
+    .getElementById("bookingForm")
+    .addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+        const name =
+          document.getElementById("fullName").value.trim();
+
+        const email =
+          document.getElementById("email").value.trim();
+
+        const date =
+          document.getElementById("date").value;
+
+        const selectedPackage =
+          packageSelect.value;
+
+        const reference =
+          createBookingReference();
+
+
+        document.getElementById(
+          "reference"
+        ).textContent = reference;
+
+
+        document.getElementById(
+          "confirmation"
+        ).style.display = "block";
+
+
+        /*
+          IMPORTANT:
+
+          This demo generates the reference locally.
+
+          A production system should send the booking data to
+          a secure backend/database and email the confirmation
+          to the customer and authorized organizer.
+        */
+
+
+        console.log({
+          bookingReference: reference,
+          customerName: name,
+          customerEmail: email,
+          tripDate: date,
+          package: selectedPackage,
+          participants: guestsSelect.value
+        });
+
+
+        document
+          .getElementById("confirmation")
+          .scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+
+      }
+    );
+
+
+  /*
+    Set initial price.
+  */
+
+  updateTotal();
+
+</script>
+
+</body>
+</html>
